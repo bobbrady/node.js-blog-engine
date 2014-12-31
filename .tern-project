@@ -1,0 +1,21 @@
+{
+  "libs": [
+      "jquery",
+      "ecma5"
+  ],
+  "plugins": {
+    "angular": "./",
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    },
+    "node": {
+      "load": true
+    }
+  },
+  "loadEagerly": [
+    "app/**/*.js",
+    "config/**/*.js",
+    "./*.js"
+  ]
+}

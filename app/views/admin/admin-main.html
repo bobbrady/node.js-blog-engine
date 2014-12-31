@@ -1,0 +1,34 @@
+<main>
+{% for post in posts %}
+<section>
+  <h3 class="sr-title"><a href="/posts/{{post.slug}}" rel="bookmark">{{post.title}}</a></h3>
+  <p>
+  <i class="fa fa-tags"></i> Tags: 
+  {% for tag in post.tags | sort %}
+  <a class="sr-tags" href="/posts/tags/{{tag}}"><span class="badge badge-info">{{tag | upper}}</span></a> 
+  {% endfor %}
+  </p>
+  <p>
+  <time datetime="{{post.created | date('Y-m-d')}}" >
+    <i class="fa fa-calendar"><small></i> Posted on {{post.created | date('D F, j Y')}}</small>
+  </time>
+  </p>
+  <p>
+  {{post.excerpt}}
+  </p>
+</section>
+<a class="btn btn-default" href="/admin/posts/{{post.slug}}" >
+  <i class="fa fa-pencil"></i>Edit</a>
+<form class="form sr-inline" role="form" method="post" action="/admin/posts/{{post.slug}}?_method=DELETE">
+  <button  type="submit" class="btn btn-primary btn-danger" >
+    <i class="fa fa-trash"></i>Delete</button>
+</form>
+<hr>
+{% endfor %}
+</main>
+<nav>
+  <ul class="pager pull-left">
+    <li {% if prevPage <= 0 %}class="disabled"{% endif %}><a href="/admin?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">&larr; Previous</a></li>
+    <li {% if nextPage <= 0 %}class="disabled"{% endif %}><a href="/admin?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next &rarr;</a></li>
+  </ul>    
+</nav>

@@ -1,0 +1,26 @@
+{
+  "name": "SharpReporter",
+  "version": "0.0.1",
+  "description": "A lightweight minimalistic blog for personal use",
+  "keywords": [
+    "lightweight",
+    "small",
+    "minimal",
+    "blog"
+  ],
+  "authors": [
+    "Bob Brady"
+  ],
+  "license": "Creative Commons Attribution 4.0 International",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1"
+  }
+}

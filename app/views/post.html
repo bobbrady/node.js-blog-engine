@@ -1,0 +1,30 @@
+
+{% extends 'layout.html' %}
+
+{% block header %}{% include 'header.html' %}{% endblock %}
+
+{% block content %}
+<main>
+    <article>
+      <header>
+        <h2 class="sr-title">{{post.title}}</h2>
+        <p>
+        <i class="fa fa-tags"></i> Tags: 
+        {% for tag in post.tags | sort %}
+        <a class="sr-tags" href="/posts/tags/{{tag}}"><span class="badge badge-info">{{tag | upper}}</span></a> 
+        {% endfor %}
+        </p>
+        <p>
+        <time datetime="{{post.created | date('Y-m-d')}}" >
+          <i class="fa fa-calendar"><small></i> Posted on {{post.created | date('D F, j Y')}}</small>
+        </time>
+        </p>
+      </header>
+      <section>
+        {% autoescape false %}{{ post.content }}{% endautoescape %}
+      </section>
+    </article>
+<hr>
+</main>
+{% endblock %}
+

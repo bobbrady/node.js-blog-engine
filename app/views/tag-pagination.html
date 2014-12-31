@@ -1,0 +1,11 @@
+<nav id="shao-pagination">
+  {% if prevPage > 0 %}
+  <a href="/posts/tags/{{tagName}}?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">&larr; Newer</a>
+  |
+  {% endif %}
+   Page {{page}} of {{pages}}
+  {% if nextPage > 0  %}
+  | 
+  <a href="/posts/tags/{{tagName}}?page={{nextPage}}&lessThanTime={{lessThanTime}}">Older &rarr;</a>
+  {% endif %}
+</nav>

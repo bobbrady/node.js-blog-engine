@@ -1,0 +1,6 @@
+<nav>
+  <ul class="pager pull-left">
+    <li {% if prevPage <= 0 %}class="disabled"{% endif %}><a href="/?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">&larr; Previous</a></li>
+    <li {% if nextPage <= 0 %}class="disabled"{% endif %}><a href="/?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next &rarr;</a></li>
+  </ul>    
+</nav>
