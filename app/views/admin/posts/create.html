@@ -20,16 +20,16 @@
           required data-required-msg='Post title is required'><br>
       </div>
       <div class="form-group" >
-        <label for="text-input">Post Markdown Content</label>
-        <button id="previewBtn" type="button" class="btn btn-primary"
-          onclick="xiaoBlog.previewMarkdown('text-input', 'preview', 'previewBtn');">Preview</button>
+        <label for="sr-text-input">Post Markdown Content</label>
+        <button id="sr-previewBtn" type="button" class="btn btn-primary"
+          onclick="xiaoBlog.previewMarkdown('sr-text-input', 'sr-preview', 'sr-previewBtn');">Preview</button>
         <div id="sr-preview" ></div>
-        <textarea id="text-input" class="form-control" rows="20" name="content"
+        <textarea id="sr-text-input" class="form-control" rows="20" name="content"
           required data-required-msg="Post markdown content is required">Type **Markdown** here.</textarea>
       </div>
       <div class="form-group" >
-        <label for="tags">Tags, comma separated (tag1, tag2, tag3, ...)</label>
-        <input id="tags" class="form-control" type="text" name="tags" size="80">
+        <label for="sr-tags">Tags, comma separated (tag1, tag2, tag3, ...)</label>
+        <input id="sr-tags" class="form-control" type="text" name="tags" size="80">
       </div>
       <label for="name">Publish Post</label>
       <div>

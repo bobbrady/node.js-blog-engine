@@ -1,8 +1,11 @@
-/*!
+/**
  * Bootstrap's Gruntfile modified by Bob Brady
  * http://getbootstrap.com
- * Copyright 2013-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *
+ * xiao-blog - a small footprint blog designed for personal use
+ * Copyright (c) 2014-2015, Bob Brady. 
+ * Usage permitted under the terms of The MIT License, (MIT) 
+ * https://github.com/bobbrady/xiao-blog
  */
 
 module.exports = function (grunt) {
