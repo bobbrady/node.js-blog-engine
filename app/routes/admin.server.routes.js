@@ -9,8 +9,8 @@
 /* jshint node: true */
 "use strict";
 
-var admin = require('../../app/controllers/admin.server.controller'),
-    users = require('../../app/controllers/users.server.controller');
+var admin = require(prepend_basedir('app/controllers/admin.server.controller')),
+    users = require(prepend_basedir('app/controllers/users.server.controller'));
 
 module.exports = function(app) {
 

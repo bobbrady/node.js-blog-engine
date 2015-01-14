@@ -10,8 +10,9 @@
 "use strict";
 
 module.exports = {
-  db: 'mongodb://localhost/xiao-blog-test',
-  sessionSecret: 'xiaoBlogSessionSecret',
+  basedir: "/var/www/xiao-blog",
+  db: 'mongodb://localhost/xiao-blog',
+  sessionSecret: 'HdiddyFooSecret',
   app: {
     blog: {
       url: 'http://localhost:3000',

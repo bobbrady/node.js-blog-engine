@@ -9,7 +9,7 @@
 /* jshint node: true */
 "use strict";
 
-var posts = require('../../app/controllers/posts.server.controller');
+var posts = require(prepend_basedir('app/controllers/posts.server.controller'));
 
 module.exports = function(app) {
   app.route('/posts/tags/:tagName')

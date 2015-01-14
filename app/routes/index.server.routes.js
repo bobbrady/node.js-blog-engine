@@ -10,6 +10,6 @@
 "use strict";
 
 module.exports = function(app) {
-  var posts = require('../controllers/posts.server.controller');
+  var posts = require(prepend_basedir('app/controllers/posts.server.controller'));
   app.get('/', posts.list);
 };

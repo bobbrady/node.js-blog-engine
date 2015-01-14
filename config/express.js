@@ -30,7 +30,7 @@ module.exports = function() {
   // Enable Swig templating
   app.engine('html', swig.renderFile);
   app.set('view engine', 'html');
-  app.set('views', './app/views');
+  app.set('views', prepend_basedir('app/views'));
 
   if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -47,7 +47,7 @@ module.exports = function() {
 
   // Multer handles file uploads from 
   app.use(multer({ 
-    dest: './public/uploads/',
+    dest: prepend_basedir('public/uploads/'),
     rename: function (fieldname, filename) {
       return filename.replace(/\W+/g, '-').toLowerCase() + Date.now();
     },
@@ -84,14 +84,14 @@ module.exports = function() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  require('../app/routes/index.server.routes.js')(app);
-  require('../app/routes/users.server.routes.js')(app);
-  require('../app/routes/posts.server.routes.js')(app);
-  require('../app/routes/tags.server.routes.js')(app);
-  require('../app/routes/uploads.server.routes.js')(app);
-  require('../app/routes/admin.server.routes.js')(app);
+  require(prepend_basedir('app/routes/index.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/users.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/posts.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/tags.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/uploads.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/admin.server.routes.js'))(app);
 
-  app.use(express.static('./public'));
+  app.use(express.static(prepend_basedir('public')));
 
   return app;
 };

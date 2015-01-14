@@ -11,13 +11,25 @@
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var mongoose = require('./config/mongoose'),
-express = require('./config/express'),
-passport = require('./config/passport');
+var config = require("./config/config");
 
-var db = mongoose();
-var app = express();
-var passport = passport();
+// Basic idea from https://gist.github.com/branneman/8048520, H/T: a-ignatov-parc
+// Use a global function to handle local requires(...) paths
+var prepend_basedir = function(name) {
+  return config.basedir + '/' + name;
+};
+
+global.prepend_basedir = prepend_basedir;
+
+
+var express = require(prepend_basedir('config/express')),
+mongoose = require(prepend_basedir('config/mongoose')),
+passport = require(prepend_basedir('config/passport'));
+
+mongoose();
+var app = express(),
+passport = passport();
+
 app.listen(3000);
 module.exports = app;
 

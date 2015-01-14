@@ -9,7 +9,7 @@
 /* jshint node: true */
 "use strict";
 
-var users = require('../../app/controllers/users.server.controller'),
+var users = require(prepend_basedir('app/controllers/users.server.controller')),
 passport = require('passport');
 
 module.exports = function(app) {
