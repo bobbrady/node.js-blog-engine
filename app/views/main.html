@@ -1,28 +1,61 @@
 <main>
+{% if pageHeader %}
+  <h2 id="page-header">{{pageHeader}}</h2>
+  <hr>
+{% endif %}
 {% for post in posts %}
 <section>
-  <h3 class="sr-title"><a href="/posts/{{post.slug}}" rel="bookmark">{{post.title}}</a></h3>
-  <p>
-  <i class="fa fa-tags"></i> Tags: 
-  {% for tag in post.tags | sort %}
-  <a class="sr-tags" href="/posts/tags/{{tag}}"><span class="badge badge-info">{{tag | upper}}</span></a> 
-  {% endfor %}
-  </p>
-  <p>
-  <time datetime="{{post.created | date('Y-m-d')}}" >
-    <i class="fa fa-calendar"><small></i> Posted on {{post.created | date('D F, j Y')}}</small>
-  </time>
-  </p>
-  <p>
-  {{post.excerpt}}
-  </p>
-  <hr class="sr-posts">
+  <div class="post">
+    <a href="/posts/{{post.slug}}"  rel="bookmark" class="post-thumbnail">
+      <img alt="{{post.title}}" class="image-responsive" width="300" height="225" src="{{post.coverImage}}">
+    </a>
+    <div class="post-info">
+      <p>
+      <a class="text-muted" href="/posts/tags/{{post.tags | first}}">
+        Category: {{post.tags | first | replace('-', ' ', 'g') | title }}
+      </a>
+      <time datetime="{{post.created | date('Y-m-d')}}" >
+        <i class="fa fa-calendar datetime"><small></i> {{post.created | date('D M, j Y')}}</small>
+      </time>
+      </p>
+      <h1 class="title">
+        <a href="/posts/{{post.slug}}">
+          {{post.title}}                
+        </a>
+      </h1>
+      <p>
+      <i class="fa fa-tags"></i> Tags: 
+      {% for tag in post.tags | sort %}
+      <a class="text-muted tag-margin" href="/posts/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a>
+      {% endfor %}
+      </p>
+    </div>
+  </div>
+  <!-- .post -->
+
 </section>
 {% endfor %}
 </main>
 <nav>
-  <ul class="pager pull-left">
-    <li {% if prevPage <= 0 %}class="disabled"{% endif %}><a href="/?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">&larr; Previous</a></li>
-    <li {% if nextPage <= 0 %}class="disabled"{% endif %}><a href="/?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next &rarr;</a></li>
-  </ul>    
+  <!-- Pager -->
+  <ul class="pager">
+{% if prevPage <= 0 %}
+    <li class="previous disabled">
+      <a href="javascript: void(0)">Previous</a>
+    </li>
+{% else %}
+    <li class="previous">
+      <a href="/?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">Previous</a>
+    </li>
+{% endif %}
+{% if nextPage <= 0 %}
+    <li class="next disabled">
+      <a href="javascript: void(0)">Next</a>
+    </li>
+{% else %}
+    <li class="next">
+    <a href="/?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next</a>
+    </li>
+{% endif %}
+  </ul>
 </nav>

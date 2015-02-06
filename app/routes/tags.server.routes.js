@@ -13,7 +13,13 @@ var posts = require(prepend_basedir('app/controllers/posts.server.controller'));
 
 module.exports = function(app) {
   app.route('/posts/tags/:tagName')
-    .get(posts.listByTag);
+  .get(posts.listByTag);
 
-  app.param('tagName', posts.postsByTag);
+  app.route('/tags/tagcloud')
+  .get(posts.tagcloud);
+
+  app.param('tagName', function(req,res, next, tagName){
+      req.tagName = tagName;
+      next();
+  });
 };

@@ -1,0 +1,37 @@
+{% if userFullName  %}
+<nav>
+  <h5 class="widget-title">Admin</h5>
+  <a  href="/admin/posts">
+    <span class="fa-stack fa-2x">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-file-o fa-stack-1x"></i>
+    </span> 
+    Add New Post 
+  </a>
+  <br>
+  <a  href="/admin/signout">
+    <span class="fa-stack fa-2x">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-sign-out fa-stack-1x"></i>
+    </span> 
+    Sign out
+  </a>
+  {% else %}
+  <a  href="/admin/signin">
+    <span class="fa-stack fa-2x">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-sign-in fa-stack-1x"></i>
+    </span> 
+    Sign in
+  </a>
+  <br>
+  <a  href="/admin/signup">
+    <span class="fa-stack fa-2x">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-users fa-stack-1x"></i>
+    </span> 
+    Sign up
+  </a>
+  <hr>
+  {% endif %}
+</nav>  

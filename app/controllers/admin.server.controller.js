@@ -84,15 +84,18 @@ exports.createForm = function(req, res) {
 
 exports.create = function(req, res) {
   var title = req.body.title,
+  description = req.body.description,
   content = req.body.content,
-  tags = req.body.tags.length > 0 ? req.body.tags.split(',') : [],
+  tags = req.body.tags.length > 0 ? req.body.tags.split(/\s*,[,\s]*/) : [],
   uploads = req.body.uploadedFiles.length > 0 ? req.body.uploadedFiles.split(',') : [],
   published = req.body.published;
 
   var post = new Post({
     title: title,
+    description: description,
     content: content,
     tags: tags,
+    coverImage: uploads[0],
     uploads: uploads,
     published: published,
     author: req.user
@@ -170,7 +173,7 @@ exports.delete = function(req, res) {
 function buildPaginationOptions(req) {
   var options = {};
   options.perPage = 4;
-  options.page = req.param('page') > 1 ? parseInt(req.param('page'), 10) : 1; 
+  options.page = parseInt(req.query.page, 10) > 1 ? parseInt(req.query.page, 10) : 1;
   options.lessThanTime = req.query.lessThanTime; 
   options.greaterThanTime = req.query.greaterThanTime; 
   options.criteria = {};

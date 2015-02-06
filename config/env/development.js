@@ -10,16 +10,17 @@
 "use strict";
 
 module.exports = {
-  basedir: "/var/www/xiao-blog",
+  basedir: "/home/user/xiao-blog",
   db: 'mongodb://localhost/xiao-blog',
-  sessionSecret: 'HdiddyFooSecret',
+  sessionSecret: 'XiaoBlogSecret',
   app: {
-    blog: {
-      url: 'http://localhost:3000',
-      title: 'Xiao Blog',
-      description: 'Xiao Blog is a small footprint blog designed for personal use',
-      logo: '/img/logo.png'
-    }
+    url: 'http://localhost:3000',
+    title: 'Xiao Blog',
+    description: 'Xiao Blog is a small footprint blog designed for personal use',
+    logo: '/img/xiao-blog-logo.png',
+    favicon: 'public/img/xiao-blog-favicon.ico',
+    postsPerPage: 10,
+    logFormat: ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :response-time ms'
   }
 };
 

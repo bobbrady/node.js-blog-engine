@@ -1,72 +1,69 @@
 {% extends '../../layout.html' %}
 
-{% block header %}{% include '../../header.html' %}{% endblock %}
+{% block meta %}{% include '../../post-meta.html' %}{% endblock %}
 
 {% block content %}
 <main role="main">
-<div class="row">
-  <div class="col-sm-10 col-sm-offset-1">
-    {% if (error && error.length > 0) %}
-      <div class="alert alert-danger" role="alert">
-        {{error}}
-      </div>
-    {% endif %}
-    <h2>Update an existing post</h2>
-    <hr>
-    <form class="form" action="/admin/posts/{{post.slug}}?_method=PUT" method="POST">
-      <div class="form-group" >
-        <label for="title">Post Title</label>
-        <input id="title" class="form-control" type="text" name="title" size="80" 
-          required data-required-msg='Post title is required' value="{{post.title}}"><br>
-      </div>
-      <div class="form-group" >
-        <label for="sr-text-input">Post Markdown Content</label>
-        <button id="sr-previewBtn" type="button" class="btn btn-primary"
-          onclick="xiaoBlog.previewMarkdown('sr-text-input', 'sr-preview', 'sr-previewBtn');">Preview</button>
-        <div id="sr-preview" ></div>
-        <textarea id="sr-text-input" class="form-control" rows="20" name="content"
-          required data-required-msg="Post markdown content is required">{{post.content}}</textarea>
-      </div>
-      <div class="form-group" >
-        <label for="sr-tags">Tags, comma separated (tag1, tag2, tag3, ...)</label>
-        <input id="sr-tags" class="form-control" type="text" name="tags" size="80" 
-          {% if post.tags.length > 0 %}value="{{post.tags}}"{% endif %}>
-      </div>
-      <label for="name">Publish Post</label>
-      <div>
-        <label class="radio-inline"><input type="radio" name="published" value="false"
-          {% if post.published === false %}checked{% endif %}>No</label>
-        <label class="radio-inline"><input type="radio" name="published" 
-          {% if post.published === true %}checked{% endif %}>Yes</label>  
-      </div>
-      <input id="hiddenUploads" type="hidden" name="uploadedFiles"
-        {% if post.uploads.length > 0 %}value="{{post.uploads}}"{% endif %}> 
-      <br>
-      <button class="btn btn-primary" type="submit">Update Post</button>
-    </form>
-  </div>
+{% if (error && error.length > 0) %}
+<div class="alert alert-danger" role="alert">
+  {{error}}
 </div>
-<div class="row">
-  <div class="col-sm-10 col-sm-offset-1">
-    <br>
-    <form id="jsonForm" action="/admin/uploads", method="post", enctype="multipart/form-data">
-        <h4>Upload an image for the post</h4>
-        <input id="uploadFile" name="uploadFile" type="file" class="hidden">
-        <div class="input-group">
-          <input id="visibleFile" class="form-control" type="text">
-          <span class="input-group-btn">
-          <button class="btn btn-primary" type="button" onclick="$('input[id=uploadFile]').click();">Browse</button>
-        </span>
-        </div>
-        <button type="submit" class="btn btn-primary">Upload</button>
-        <br>
-        <h4 id="uploadHeader" class="hidden">Uploaded Files</h4>
-        <ul id="uploadList">
-        </ul>
-    </form>
-    <br/>
+{% endif %}
+<h2>Update an existing post</h2>
+<hr>
+<form class="form" action="/admin/posts/{{post.slug}}?_method=PUT" method="POST">
+  <div class="form-group" >
+    <label for="title">Post Title</label>
+    <input id="title" class="form-control" type="text" name="title" size="80" 
+    required data-required-msg='Post title is required' value="{{post.title}}"><br>
   </div>
-</div>
+  <div class="form-group" >
+    <label for="description">Description</label>
+    <textarea id="description" class="form-control" name="description" rows="5" 
+      required data-required-msg='Post description is required'>{{post.description}}</textarea>
+  </div>
+  <div class="form-group" >
+    <label for="sr-text-input">Post Markdown Content</label>
+    <button id="sr-previewBtn" type="button" class="btn btn-primary"
+      onclick="xiaoBlog.previewMarkdown('sr-text-input', 'sr-preview', 'sr-previewBtn');">Preview</button>
+    <div id="sr-preview" ></div>
+    <textarea id="sr-text-input" class="form-control" rows="20" name="content"
+      required data-required-msg="Post markdown content is required">{{post.content}}</textarea>
+  </div>
+  <div class="form-group" >
+    <label for="sr-tags">Tags, comma separated (tag1, tag2, tag3, ...)</label>
+    <input id="sr-tags" class="form-control" type="text" name="tags" size="80" 
+    {% if post.tags.length > 0 %}value="{{post.tags}}"{% endif %}>
+  </div>
+  <label for="name">Publish Post</label>
+  <div>
+    <label class="radio-inline"><input type="radio" name="published" value="false"
+      {% if post.published === false %}checked{% endif %}>No</label>
+    <label class="radio-inline"><input type="radio" name="published" 
+      {% if post.published === true %}checked{% endif %}>Yes</label>  
+  </div>
+  <input id="hiddenUploads" type="hidden" name="uploadedFiles"
+  {% if post.uploads.length > 0 %}value="{{post.uploads}}"{% endif %}> 
+  <br>
+  <button class="btn btn-primary" type="submit">Update Post</button>
+</form>
+<br>
+<form id="jsonForm" action="/admin/uploads", method="post", enctype="multipart/form-data">
+  <h4>Upload an image for the post</h4>
+  <input id="uploadFile" name="uploadFile" type="file" class="hidden">
+  <div class="input-group">
+    <input id="visibleFile" class="form-control" type="text">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" onclick="$('input[id=uploadFile]').click();">Browse</button>
+    </span>
+  </div>
+  <button type="submit" class="btn btn-primary">Upload</button>
+  <br>
+  <h4 id="uploadHeader" class="hidden">Uploaded Files</h4>
+  <ul id="uploadList">
+  </ul>
+</form>
+<br/>
 </main>
 {% endblock %}
 
@@ -79,10 +76,10 @@
       xiaoBlog.captureHiddenFile("uploadFile", "visibleFile");
       marked.setOptions({
         // callback for code highlighter
-        highlight: function(code, lang) {
-          return hljs.highlightAuto(code).value;
-        }
+highlight: function(code, lang) {
+return hljs.highlightAuto(code).value;
+}
+});
       });
- });
 </script>
 {% endblock %}

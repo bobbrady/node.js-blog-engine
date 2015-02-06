@@ -14,7 +14,7 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    cssName: "sharp-reporter",
+    cssName: "xiao-blog",
 
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),

@@ -88,7 +88,7 @@ var xiaoBlog = (function() {
   function processJson(data) { 
     // 'data' is the json object returned from the server 
     var uploadFile = data.uploadFile;
-    xiaoUploads.push(uploadFile.path);
+    xiaoUploads.push(uploadFile.path.replace("public", ""));
     var ul = document.getElementById(uploadList);
     appendUploadToList(ul, uploadFile.path);
     $('#' + uploadListHeader).removeClass('hidden');

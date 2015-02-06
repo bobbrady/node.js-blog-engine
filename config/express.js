@@ -11,6 +11,7 @@
 
 var config = require('./config'),
 express = require('express'),
+fs = require('fs'),
 morgan = require('morgan'),
 compress = require('compression'),
 bodyParser = require('body-parser'),
@@ -20,20 +21,27 @@ swig = require('swig'),
 session = require('express-session'),
 flash = require('connect-flash'),
 passport = require('passport'),
+favicon = require('serve-favicon'),
 multer = require('multer');
 
 module.exports = function() {
   var app = express();
 
-  app.locals.blog = config.app.blog;
+  app.locals.blog = config.app;
+
 
   // Enable Swig templating
   app.engine('html', swig.renderFile);
   app.set('view engine', 'html');
   app.set('views', prepend_basedir('app/views'));
 
+  app.use(favicon(prepend_basedir(config.app.favicon)));
+
+  // log apache format to file
+  var accessLogStream = fs.createWriteStream(prepend_basedir('logs/access.log', {flags: 'a'}));
+  app.use(morgan(config.app.logFormat, {stream: accessLogStream}));
+
   if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
     app.set('view cache', false);
   } else if (process.env.NODE_ENV === 'production') {
     app.use(compress());
@@ -45,9 +53,9 @@ module.exports = function() {
   }));
   app.use(bodyParser.json());
 
-  // Multer handles file uploads from 
+  // Multer handles file uploads  
   app.use(multer({ 
-    dest: prepend_basedir('public/uploads/'),
+    dest: 'public/uploads/',
     rename: function (fieldname, filename) {
       return filename.replace(/\W+/g, '-').toLowerCase() + Date.now();
     },
@@ -83,6 +91,7 @@ module.exports = function() {
   // Configure the Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
+
 
   require(prepend_basedir('app/routes/index.server.routes.js'))(app);
   require(prepend_basedir('app/routes/users.server.routes.js'))(app);

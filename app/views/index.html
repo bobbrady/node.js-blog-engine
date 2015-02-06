@@ -5,6 +5,6 @@
     https://github.com/bobbrady/xiao-blog
 --> 
 {% extends 'layout.html' %}
-{% block title %}{{blog.title}}{% endblock %}
-{% block header %}{% include 'header.html' %}{% endblock %}
+{% block meta %}{% include 'index-meta.html' %}{% endblock %}
 {% block content %}{% include 'main.html' %}{% endblock %}
+{% block admin-side %}{% include 'admin/admin-side.html' %}{% endblock %}

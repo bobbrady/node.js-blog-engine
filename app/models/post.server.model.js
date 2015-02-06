@@ -25,6 +25,11 @@ var PostSchema = new Schema({
     'Title exceeds 120 character max limit'
     ]
   },
+  description: {
+    type: String,
+    trim: true,
+    required: 'Description must be provided'
+  },
   created: {
     type: Date,
     default: Date.now
@@ -41,7 +46,12 @@ var PostSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  tags: [String],
+  tags: [{
+    type:String,
+    lowercase: true,
+    trim:true
+  }],
+  coverImage: String,
   uploads: [String]
 });
 
@@ -62,6 +72,9 @@ function slugify(text) {
 
 PostSchema.pre('save', function (next) {
   this.slug = slugify(this.title);
+  for(var i = 0; i < this.tags.length; i++) {
+    this.tags[i] = this.tags[i].replace(/\s+/g, '-').toLowerCase();
+  }
   next(); 
 });
 

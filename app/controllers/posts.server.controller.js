@@ -11,7 +11,10 @@
 
 var mongoose = require('mongoose'),
 marked = require('marked'),
-Post = mongoose.model('Post');
+Post = mongoose.model('Post'),
+Tag = mongoose.model('Tag'),
+config = require(prepend_basedir('config/config'));
+
 
 var getErrorMessage = function(err) {
   if(err.errors) {
@@ -43,7 +46,7 @@ exports.list = function(req, res) {
         page: pager.page,
         nextPage: pager.nextPage,
         prevPage: pager.prevPage,
-        userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : '',
+        userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''
       });    
     }
   });
@@ -52,6 +55,7 @@ exports.list = function(req, res) {
 exports.listByTag = function(req, res) {
   var options = buildPaginationOptions(req);
   options.criteria.tags = req.tagName;
+
   Post.paginate(options, function(err, pagerInput) {
     if (err) {
       return res.status(400).send({
@@ -69,7 +73,7 @@ exports.listByTag = function(req, res) {
         nextPage: pager.nextPage,
         prevPage: pager.prevPage,
         tagName: pager.tagName,
-        userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : '',
+        userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''
       });    
     }});
 };  
@@ -98,23 +102,29 @@ exports.postBySlug = function(req, res, next, slug) {
   });
 };
 
-exports.postsByTag = function(req, res, next, tagName) {
-     req.tagName = tagName;
-     next();
-};  
+exports.tagcloud = function(req, res) {
+  Tag.find().sort({_id: 1}).exec(function(err, tags) {
+    if (err) {
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      res.json(tags);    
+    }});
+};
 
 
 function buildPaginationOptions(req) {
   var options = {};
-  options.page = req.param('page') > 1 ? parseInt(req.param('page'), 10) : 1; 
+  options.page = parseInt(req.query.page, 10) > 1 ? parseInt(req.query.page, 10) : 1; 
   options.lessThanTime = req.query.lessThanTime; 
   options.greaterThanTime = req.query.greaterThanTime; 
 
   var defaults = {
-    perPage           : 4,    // Number of posts to display on each page.
-    page              : 1,    // Initial page number.
-    lessThanTime      : 0,    // Time in milliseconds, resulting posts created before this time
-    greaterThanTime   : 0,    // Time in milliseconds, resulting posts created after this time
+    perPage           : config.app.postsPerPage,  // Number of posts to display on each page.
+    page              : 1,                        // Initial page number.
+    lessThanTime      : 0,                        // Time in milliseconds, resulting posts created before this time
+    greaterThanTime   : 0,                        // Time in milliseconds, resulting posts created after this time
     criteria          : {published: true}
   };
 
@@ -128,38 +138,37 @@ function buildPaginationOptions(req) {
 }
 
 function markupToHtml(pager) {
-      /* jshint regexp:true */
-      for (var idx = 0; idx < pager.posts.length; idx++) {
-        var html = marked(pager.posts[idx].content);
-        var excerpt = String(html).replace(/<\/?[^>]+>/gi, '');
-        excerpt = excerpt.replace(/(\r\n|\n|\r)+/gm, ' ');
-        excerpt = excerpt.split(' ').slice(0,50).join(' ');
-        pager.posts[idx].excerpt = excerpt + "...";
-      }
-       /* jshint regexp:false */
+  /* jshint regexp:true */
+  for (var idx = 0; idx < pager.posts.length; idx++) {
+    var html = marked(pager.posts[idx].content);
+    var excerpt = String(html).replace(/<\/?[^>]+>/gi, '');
+    excerpt = excerpt.replace(/(\r\n|\n|\r)+/gm, ' ');
+    excerpt = excerpt.split(' ').slice(0,50).join(' ');
+    pager.posts[idx].excerpt = excerpt + "...";
+  }
+  /* jshint regexp:false */
 }
 
 
 function buildPager(pagerInput) {
-        var pager = {};
-        pager.page = pagerInput.options.page;
-        pager.pages = Math.ceil(pagerInput.count /pagerInput.options.perPage);
-        pager.nextPage = pager.page < pager.pages ? pager.page + 1 : 0;
-        pager.prevPage = pager.page > 1 ? pager.page - 1 : 0;
-        pager.tagName = pagerInput.options.criteria.tags;
-        var posts = pagerInput.posts;
-        if (posts && posts.length > 0) {
-          // If getting previous page, reverse page list to be descending
-          if (pagerInput.sortType === 'created') {
-            posts.reverse();
-          }
-          pager.lessThanTime = posts[posts.length - 1].created.getTime();
-          pager.greaterThanTime = posts[0].created.getTime();
-        } else {
-          pager.lessThanTime = 0;
-          pager.greaterThanTime = 0;
-        }
-        pager.posts = posts;
-        return pager;
+  var pager = {};
+  pager.page = pagerInput.options.page;
+  pager.pages = Math.ceil(pagerInput.count /pagerInput.options.perPage);
+  pager.nextPage = pager.page < pager.pages ? pager.page + 1 : 0;
+  pager.prevPage = pager.page > 1 ? pager.page - 1 : 0;
+  pager.tagName = pagerInput.options.criteria.tags;
+  var posts = pagerInput.posts;
+  if (posts && posts.length > 0) {
+    // If getting previous page, reverse page list to be descending
+    if (pagerInput.sortType === 'created') {
+      posts.reverse();
+    }
+    pager.lessThanTime = posts[posts.length - 1].created.getTime();
+    pager.greaterThanTime = posts[0].created.getTime();
+  } else {
+    pager.lessThanTime = 0;
+    pager.greaterThanTime = 0;
+  }
+  pager.posts = posts;
+  return pager;
 }
-
