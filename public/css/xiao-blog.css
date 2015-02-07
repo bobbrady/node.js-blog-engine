@@ -6361,8 +6361,7 @@ header h1.title {
   float: left;
   max-width: 185px;
   height: auto;
-  margin-bottom: 10px;
-  margin-right: 20px;
+  margin: 0;
 }
 .post {
   padding: 20px 0;
