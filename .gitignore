@@ -1,5 +1,2 @@
 node_modules
 bower_components
-logs/access.log
-less/*.map
-public/css/*.map
