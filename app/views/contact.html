@@ -1,0 +1,60 @@
+<!--
+    xiao-blog - a small footprint blog designed for personal use.
+    Copyright (c) 2014-2015, Bob Brady. 
+    Usage permitted under the terms of The MIT License, (MIT), 
+    https://github.com/bobbrady/xiao-blog
+--> 
+
+{% extends 'layout.html' %}
+{% block meta %}{% include 'index-meta.html' %}{% endblock %}
+{% block page-header %}{% include 'contact-header.html' %}{% endblock %}
+{% block content %}
+<main role="main" class="content">
+<br/>
+<p>
+Feel free to contact me
+</p>
+<h2>Direct Contact</h2>
+<p>
+<strong>Location:</strong> Boston, MA, USA<br/>
+<strong>Email:</strong> <a href="mailto:user@example.com">info@example.com</a><br/>
+<strong>Twitter:</strong> <a href="http://twitter.com/username" target="_blank">@username</a><br/>
+<strong>Facebook:</strong> <a href="http://facebook.com/username" target="_blank">username</a><br/>
+<strong>Google+:</strong> <a href="https://plus.google.com/000000000000000000000?prsrc=3"
+  rel="publisher" target="_blank">User Name</a><br/>
+</p>
+<h2>Send a Message</h2>
+<p>Required fields are marked with an asterisk <span class="required">*</span></p>
+<div class="row">
+  <div class="col-sm-9">
+    <div id="contact-messages" ></div>
+
+    <form id="contact-form" role="form" class="form" action="/contact" method="post" autocomplete="off" >
+      <div class="form-group">
+        <label for="contactName">Your Name<span class="required"> *</span></label>
+        <input id="contactName" type="text" class="form-control" name="contactName" placeholder="Enter Name" required>
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Your Email<span class="required"> *</span></label>
+        <input id="contactEmail" type="email" class="form-control" name="contactEmail" placeholder="Enter Email" required  >
+      </div>
+      <div class="form-group">
+        <label for="contactMessage">Message<span class="required"> *</span></label>
+        <textarea id="contactMessage" name="contactMessage" class="form-control" rows="5" required></textarea>
+      </div>
+      <div id="g-recpatcha" class="g-recaptcha" data-sitekey="SITE_KEY_HERE"></div>
+      <input type="submit" name="submit" id="submit" value="Send" class="btn btn-primary pull-right">
+    </form>
+  </div>
+</div>
+</main>
+{% endblock %}
+{% block lastjs %}
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+<script src="/js/xiaoblog.min.js"></script>
+<script>
+  $(document).ready(function(){
+      xiaoBlog.initContactForm();
+      });
+</script>
+{% endblock %}

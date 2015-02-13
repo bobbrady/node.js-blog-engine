@@ -74,7 +74,53 @@ var xiaoBlog = (function() {
 
   function captureHiddenFile(uploadFileId, visibleFileId) {
     $('input[id=' + uploadFileId +']').change(function() {
-        $('#' + visibleFileId).val($(this).val().replace("C:\\fakepath\\", ""));
+      $('#' + visibleFileId).val($(this).val().replace("C:\\fakepath\\", ""));
+    });
+  }
+
+  /* Initializes contact form for parameter validation and ajax form posting on submittal */
+  function initContactForm() {
+    $("#contact-form").validate({
+      rules: {
+        contactName:{
+          minlength: 3,
+          maxlength: 20,
+          required: true
+        },
+        contactEmail:{
+          minlength: 3,
+          maxlength: 20,
+          required: true
+        }
+      },
+      highlight: function (element) {
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+      },
+      unhighlight: function (element) {
+        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+      }
+    });
+
+    $('#contact-form').submit(function(event) {
+      var formData = {
+        contactName: $("#contactName").val(),
+        contactEmail: $("#contactEmail").val(),
+        contactMessage: $("#contactMessage").val(),
+        recaptcha: $("#g-recaptcha-response").val()
+      };
+
+      $.ajax({
+        type    : 'POST', 
+        url     : '/contact', 
+        data    : JSON.stringify(formData), 
+        dataType  : 'json', 
+        contentType: 'application/json'
+      }).done(function(data) {
+        showContactMessages(data);
+      });
+
+      // Prevent form resubmittal and page refresh
+      event.preventDefault();
     });
   }
 
@@ -102,12 +148,24 @@ var xiaoBlog = (function() {
     uploadListElement.appendChild(li);
   }
 
+  // Private helper to show contact form success and error messages from json response
+  function showContactMessages(json) {
+    if(json.success) {
+      $("#contact-messages").addClass("alert alert-success");
+      $("#contact-messages").text("Contact form successfully submitted");
+    } else {
+      $("#contact-messages").addClass("alert alert-danger");
+      $("#contact-messages").text(json.error);
+    }
+  }
+
   // Public functions
   return {
     markdownToHtml: markdownToHtml,
     previewMarkdown: previewMarkdown,
     initXhr: initXhr, 
-    captureHiddenFile: captureHiddenFile 
+    captureHiddenFile: captureHiddenFile, 
+    initContactForm: initContactForm
   };
 }());
 

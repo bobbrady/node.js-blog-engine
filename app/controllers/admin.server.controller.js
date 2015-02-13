@@ -150,7 +150,9 @@ exports.delete = function(req, res) {
   var post = req.post;
   (function next(err) {
     if (err) {
-      return console.error("error deleting " + filename,  err);
+      return res.status(400).send({
+        message: 'error deleting ' + filename + ': ' + err
+      });
     }
     if (post.uploads.length === 0) {
       return;

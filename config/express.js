@@ -99,6 +99,7 @@ module.exports = function() {
   require(prepend_basedir('app/routes/tags.server.routes.js'))(app);
   require(prepend_basedir('app/routes/uploads.server.routes.js'))(app);
   require(prepend_basedir('app/routes/admin.server.routes.js'))(app);
+  require(prepend_basedir('app/routes/contact.server.routes.js'))(app);
 
   app.use(express.static(prepend_basedir('public')));
 

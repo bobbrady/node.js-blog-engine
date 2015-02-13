@@ -9,11 +9,13 @@
 /* jshint node: true */
 "use strict";
 
-exports.upload = function(req, res) {
-// TODO: replace with logger.info from log4js
-//  console.log(req.body);  form fields
-//  console.log(req.files); form files
-  res.json(req.files);
-};  
+var contact = require(prepend_basedir('app/controllers/contact.server.controller'));
 
+module.exports = function(app) {
 
+  app.route('/contactForm')
+    .get(contact.contactForm);
+  
+  app.route('/contact')
+    .post(contact.contact);
+};

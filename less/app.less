@@ -68,6 +68,9 @@
 // Parens for addition is strict requirement
 @post-info-margin:            (@post-thumb-max-width + 10); 
 @article-post-max-width:      640px;
+@required-color:              #B90504;
+@content-link-color:          #008fd5;
+@content-link-hover-color:    @content-link-color;
 
 
 /*==============================================
@@ -86,6 +89,22 @@ body {
   color:                      @text-color; 
 }
 
+h1 {
+  font-size:                  ceil((@font-size-base * 2.0));           
+}
+
+h2 {
+  font-size:                  ceil((@font-size-base * 1.5));           
+}
+
+h3 {
+  font-size:                  ceil((@font-size-base * 1.17));           
+}
+
+h4 {
+  font-size:                  ceil((@font-size-base * 1.0));           
+}
+
 h1.title, h2.title, h3.title {
   font-weight:                @strong-font-weight; 
   margin:                     5px 0;
@@ -100,6 +119,15 @@ a:hover, a:focus {
   color:                      @link-hover-color;
 }
 
+.post-text a, .content a {
+  color:                      @content-link-color;
+  font-weight:                @strong-font-weight;
+}
+
+.post-text a:hover, .content a:focus {
+  color:                      @content-link-hover-color;
+}
+
 #header h1.title a {
   text-decoration:            none;
   font-family:                @font-family-condensed; 
@@ -111,12 +139,15 @@ a:hover, a:focus {
 }
 
 .post-info h1.title {
-  font-size:                   ceil((@font-size-base * 1.7));           
+  font-size:                  ceil((@font-size-base * 1.5));           
 }
 
-header h1.title {
-  font-size:                  ceil((@font-size-base * 2.15));            
-}
+#page-header {
+  text-align:                 center;
+  padding:                    10px 0 20px;
+  margin:                     0;
+  border-bottom:              1px solid @text-color;
+}			
 
 .badge-tag:hover { 
   background-color:           @badge-hover-color;
@@ -150,12 +181,6 @@ header h1.title {
   background-color:           @navbar-bg-color;
 }
 
-#page-header {
-  text-align:                 center;
-  padding:                    10px 0 20px;
-  margin:                     0;
-  border-bottom:              1px solid @text-color;
-}			
 
 .navbar-nav>li>a {
   font-size:                 0.875em;
@@ -278,6 +303,9 @@ div.block {
   margin:                     0 10px;
 }
 
+span.required, .error {
+  color:                      @required-color;
+}
 
 /********************************************
  * Social media bar
