@@ -37,11 +37,9 @@ var transporter = nodemailer.createTransport(({
 
 exports.contact = function(req, res) {
   verifyRecaptcha(req.body.recaptcha, function(jsonData) {
-    if (jsonData && jsonData.success) {
-      res.json(jsonData);
+    res.json(jsonData);
+    if (jsonData.success) {
       sendMail(req.body.contactName, req.body.contactMessage, req.body.contactEmail);
-    } else {
-      res.json(JSON.stringify({ success: false, error: "Incorrect Captcha response, please try again." }));
     }
   });
 };
@@ -70,11 +68,16 @@ function verifyRecaptcha(key, callback) {
       data += chunk.toString();
     });
     res.on('end', function() {
+      var jsonError = { success: false, error: 'Incorrect Captcha response, please try again.' };
       try {
         var jsonData = JSON.parse(data);
-        callback(jsonData);
+        if(jsonData && jsonData.success) {
+          callback(jsonData);
+        } else {
+          callback(jsonError);
+        }
       } catch (e) {
-        callback(false);
+        callback(jsonError);
       }
     });
   });
