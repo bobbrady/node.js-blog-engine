@@ -45,7 +45,19 @@ exports.contact = function(req, res) {
 };
 
 exports.contactForm = function(req, res) {
-  res.render('contact.html');
+  res.render('contact');
+};
+
+exports.home = function(req, res) {
+  res.render('index');
+};
+
+exports.features = function(req, res) {
+  res.render('features');
+};
+
+exports.about = function(req, res) {
+  res.render('about');
 };
 
 function sendMail(contactName, contactMessage, contactEmail) {
@@ -82,4 +94,5 @@ function verifyRecaptcha(key, callback) {
     });
   });
 }
+
 

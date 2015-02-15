@@ -8,8 +8,6 @@
 
 {% block title %}{{blog.title}}{% endblock %}
 
-{% block header %}{% include '../header.html' %}{% endblock %}
-
 {% block content %}
 <main role="main">
 <div class="row">
@@ -19,7 +17,7 @@
       {{error}}
     </div>
     {% endif %}
-    <h2>Sign up to blog posts</h2>
+    <h2>Sign-up to be a Member of this Website</h2>
     <hr>
     <form class="form" action="/admin/signup" method="post">
       <div class="form-group">

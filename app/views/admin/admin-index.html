@@ -5,6 +5,73 @@
     https://github.com/bobbrady/xiao-blog
 --> 
 {% extends '../layout.html' %}
-{% block meta %}{% include '../index-meta.html' %}{% endblock %}
-{% block content %}{% include 'admin-main.html' %}{% endblock %}
+{% block meta %}{% endblock %}
+{% block content %}
+<main>
+{% if pageHeader %}
+  <h1 id="page-header">{{pageHeader}}</h1>
+  <hr>
+{% endif %}
+{% for post in posts %}
+<section>
+  <div class="post">
+    <a href="/blog/{{post.slug}}"  rel="bookmark" class="post-thumbnail">
+      <img alt="{{post.title}}" class="image-responsive" width="300" height="225" src="{{post.coverImage}}">
+    </a>
+    <div class="post-info">
+      <p>
+      <a class="text-muted" href="/admin/blog/tags/{{post.tags | first}}">
+        Category: {{post.tags | first | replace('-', ' ', 'g') | title }}
+      </a>
+      <time datetime="{{post.created | date('Y-m-d')}}" >
+        <i class="fa fa-calendar datetime"><small></i> {{post.created | date('D M, j Y')}}</small>
+      </time>
+      </p>
+      <h1 class="title">
+        <a href="/blog/{{post.slug}}">
+          {{post.title}}                
+        </a>
+      </h1>
+      <p>
+      <i class="fa fa-tags"></i> Tags: 
+      {% for tag in post.tags | sort %}
+      <a class="text-muted tag-margin" href="/admin/blog/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a> 
+      {% endfor %}
+      </p>
+      <a class="btn btn-default" href="/admin/blog/{{post.slug}}" >
+        <i class="fa fa-pencil"></i>Edit</a>
+      <form class="form btn-inline" role="form" method="post" action="/admin/blog/{{post.slug}}?_method=DELETE">
+        <button  type="submit" class="btn btn-primary btn-danger" >
+          <i class="fa fa-trash"></i>Delete</button>
+      </form>
+    </div>
+  </div>
+  <!-- .post -->
+</section>
+{% endfor %}
+</main>
+<nav>
+  <!-- Pager -->
+  <ul class="pager">
+    {% if prevPage <= 0 %}
+    <li class="previous disabled">
+    <a href="javascript: void(0)">Previous</a>
+    </li>
+    {% else %}
+    <li class="previous">
+    <a href="/admin?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">Previous</a>
+    </li>
+    {% endif %}
+    {% if nextPage <= 0 %}
+    <li class="next disabled">
+    <a href="javascript: void(0)">Next</a>
+    </li>
+    {% else %}
+    <li class="next">
+    <a href="/admin?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}
 {% block admin-side %}{% include 'admin-side.html' %}{% endblock %}

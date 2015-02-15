@@ -9,13 +9,19 @@
 /* jshint node: true */
 "use strict";
 
-var contact = require(prepend_basedir('app/controllers/contact.server.controller'));
+var staticPages = require(prepend_basedir('app/controllers/static-pages.server.controller'));
 
 module.exports = function(app) {
 
+  app.get('/', staticPages.home);
+
+  app.get('/features', staticPages.features);
+  
+  app.get('/about', staticPages.about);
+
   app.route('/contactForm')
-    .get(contact.contactForm);
+    .get(staticPages.contactForm);
   
   app.route('/contact')
-    .post(contact.contact);
+    .post(staticPages.contact);
 };

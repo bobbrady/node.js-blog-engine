@@ -12,6 +12,7 @@
 var mongoose = require('mongoose'),
 fs = require('fs'),
 marked = require('marked'),
+config = require(prepend_basedir('config/config')),
 Post = mongoose.model('Post');
 
 var getErrorMessage = function(err) {
@@ -62,7 +63,8 @@ exports.listByTag = function(req, res) {
     } else {
       var pager = buildPager(pagerInput);
       markupToHtml(pager);
-      res.render('admin/tag', {
+      res.render('admin/admin-index', {
+        pageHeader: req.tagName,
         posts: pager.posts,
         lessThanTime: pager.lessThanTime,
         greaterThanTime: pager.greaterThanTime,
@@ -171,17 +173,28 @@ exports.delete = function(req, res) {
   });
 };
 
-
 function buildPaginationOptions(req) {
   var options = {};
-  options.perPage = 4;
-  options.page = parseInt(req.query.page, 10) > 1 ? parseInt(req.query.page, 10) : 1;
+  options.page = parseInt(req.query.page, 10) > 1 ? parseInt(req.query.page, 10) : 1; 
   options.lessThanTime = req.query.lessThanTime; 
   options.greaterThanTime = req.query.greaterThanTime; 
-  options.criteria = {};
+
+  var defaults = {
+    perPage           : config.app.postsPerPage,  // Number of posts to display on each page.
+    page              : 1,                        // Initial page number.
+    lessThanTime      : 0,                        // Time in milliseconds, resulting posts created before this time
+    greaterThanTime   : 0,                        // Time in milliseconds, resulting posts created after this time
+    criteria          : {published: true}
+  };
+
+  options = options || defaults;
+  options.perPage = options.perPage || defaults.perPage;
+  options.page = options.page || defaults.page;
+  options.lessThanTime = options.lessThanTime || defaults.lessThanTime;
+  options.greaterThanTime = options.greaterThanTime || defaults.greaterThanTime;
+  options.criteria = options.criteria || defaults.criteria;
   return options;
 }
-
 
 function buildPager(pagerInput) {
   var pager = {};

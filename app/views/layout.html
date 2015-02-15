@@ -53,13 +53,13 @@
             <a href="/">Home</a>
             </li>
             <li class="navbar-vert-line">
-            <a href="/">Category 1</a>
+            <a href="/features">Features</a>
             </li>
             <li class="navbar-vert-line">
-            <a href="/">Category 2</a>
+            <a href="/blog">Blog</a>
             </li>
             <li class="navbar-vert-line">
-            <a href="/">Category 3</a>
+            <a href="/about">About</a>
             </li>
             <li class="navbar-vert-line">
             <a href="/contactForm">Contact</a>
@@ -127,50 +127,51 @@
           <!-- Popular Posts Hardcoded for Now -->
             <h5 class="widget-title">Popular Posts</h5>
             <div class="leading-top-post">
-              <a class="top-post-thumbnail" href="">
-                <img class="img-responsive" src="/img/station-492564_640.jpg">
+              <a class="top-post-thumbnail" href="/blog/post-title-text">
+                <img alt="most popular post cover image" 
+			class="img-responsive" src="/img/station-492564_640.jpg">
               </a>
               <p>
-              <a class="text-muted" href="/">
+              <a class="text-muted" href="/blog/tags/tagname">
                 Category: Tag
               </a>
               </p>
               <h4 class="title">
-                <a href="#">Lorem ipsum dolor sit amet</a>
+                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet</a>
               </h4>		
               </p>
             </div>
             <!-- .post -->
             <div class="top-post">
               <p>
-              <a class="text-muted" href="/">
+              <a class="text-muted" href="/blog/tags/tagname">
                 Category: Tag
               </a>
               </p>
               <h4 class="title">
-                <a href="#">Lorem ipsum dolor sit amet, omittam</a>
+                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, omittam</a>
               </h4>
             </div>
             <!-- .post -->
             <div class="top-post">
               <p>
-              <a class="text-muted" href="/">
+              <a class="text-muted" href="/blog/tags/tagname">
                 Category: Tag
               </a>
               </p>
               <h4 class="title">
-                <a href="#">Lorem ipsum dolor sit amet, te verterem liberavisse duo</a>
+                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, te verterem liberavisse duo</a>
               </h4>
             </div>
             <!-- .post -->
             <div class="top-post">
               <p>
-              <a class="text-muted" href="/">
+              <a class="text-muted" href="/blog/tags/tagname">
                 Category: Tag
               </a>
               </p>
               <h4 class="title">
-                <a href="#">Lorem ipsum dolor sit amet, ad putent iisque has. Eos decore laboramus conclusionemque at, eam</a>
+                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, ad putent iisque has. Eos decore laboramus conclusionemque at, eam</a>
               </h4>
             </div>
           </aside>
@@ -209,7 +210,7 @@
             $.each(data, function(i, val) {
               var li = $("<li>");
               $("<a>").text(val._id.replace(/-/g, " ") + " (" + val.value + ")").
-                attr({href:"/posts/tags/" + val._id }).appendTo(li);
+                attr({href:"/blog/tags/" + val._id }).appendTo(li);
                 li.children().css({"font-size": val.normalizedCount + "em", "text-transform": 'capitalize'});
               li.appendTo("#taglist");
               });

@@ -1,3 +1,11 @@
+<!
+xiao-blog - a small footprint blog designed for personal use.
+Copyright (c) 2014-2015, Bob Brady. 
+Usage permitted under the terms of The MIT License, (MIT), 
+https://github.com/bobbrady/xiao-blog
+--> 
+{% extends 'layout.html' %}
+{% block meta %}
 <!-- Open Graph Meta Tags -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="{{blog.title}}"/>
@@ -7,8 +15,15 @@
 <meta property="og:image" content="{{blog.url}}{{blog.logo}}"/>
 <meta property="fb:app_id" content="FB_APP_ID"/>
 
-{# Page Meta #}
+<!-- Page Meta Tags -->
 <title>{{blog.title}}</title>
 <meta name="description" content="{{blog.description}}" />
 <!-- For successful FB crawler canonical url and og:url need to be the same -->
 <link rel="canonical" href="{{blog.url}}" />
+{% endblock %}
+{% block content %}
+<main>
+<h1 id="page-header">About Me</h1>
+</main>
+{% endblock %}
+{% block admin-side %}{% include 'admin/admin-side.html' %}{% endblock %}

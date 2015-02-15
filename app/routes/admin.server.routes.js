@@ -17,16 +17,16 @@ module.exports = function(app) {
   app.route('/admin')
   .get(users.verifyAuthenticated,admin.list);
 
-  app.route('/admin/posts')
+  app.route('/admin/blog/post')
   .get(users.verifyAuthenticated, admin.createForm)
   .post(users.verifyAuthenticated, admin.create);
 
-  app.route('/admin/posts/:slug')
+  app.route('/admin/blog/:slug')
   .get(users.verifyAuthenticated, admin.updateForm)
   .put(users.verifyAuthenticated, admin.update)
   .delete(users.verifyAuthenticated, admin.delete);
 
-  app.route('/admin/posts/tags/:tagName')
+  app.route('/admin/blog/tags/:tagName')
   .get(users.verifyAuthenticated, admin.listByTag);
 };
 

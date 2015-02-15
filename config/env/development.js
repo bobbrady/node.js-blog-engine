@@ -10,7 +10,8 @@
 "use strict";
 
 module.exports = {
-  basedir: "/home/user/xiao-blog",
+  basedir: "/home/bobby/Documents/NodeJS/xiao-blog",
+  //basedir: "/home/user/xiao-blog",
   db: 'mongodb://localhost/xiao-blog',
   sessionSecret: 'XiaoBlogSecret',
   app: {

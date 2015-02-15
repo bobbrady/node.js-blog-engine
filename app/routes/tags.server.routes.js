@@ -12,7 +12,7 @@
 var posts = require(prepend_basedir('app/controllers/posts.server.controller'));
 
 module.exports = function(app) {
-  app.route('/posts/tags/:tagName')
+  app.route('/blog/tags/:tagName')
   .get(posts.listByTag);
 
   app.route('/tags/tagcloud')

@@ -6,14 +6,28 @@
 --> 
 
 {% extends 'layout.html' %}
-{% block meta %}{% include 'post-meta.html' %}{% endblock %}
+{% block meta %}
+<!-- Open Graph Meta Tags -->
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="{{post.title}}"/>
+<meta property="og:description" content="{{post.description}}"/>
+<meta property="og:site_name" content="{{blog.title}}"/>
+<meta property="og:url" content="{{blog.url}}/blog/{{post.slug}}"/>
+<meta property="og:image" content="{{blog.url}}{{post.coverImage}}"/>
+<meta property="fb:app_id" content="FB APP_ID"/>
+<!-- Page Meta Tags -->
+<title>{{post.title}}</title>
+<meta name="description" content="{{post.description}}" />
+<!-- For successful FB crawler canonical url and og:url need to be the same -->
+<link rel="canonical" href="{{blog.url}}/blog/{{post.slug}}" />
+{% endblock %}
 {% block content %}
 <main>
 <article class="article">
   <div class="block">
     <header>
       <p>
-      <a class="text-muted" href="/posts/tags/{{post.tags | first}}">
+      <a class="text-muted" href="/blog/tags/{{post.tags | first}}">
         Category: {{post.tags | first | replace('-', ' ', 'g') | title }}
       </a>
       <time datetime="{{post.created | date('Y-m-d')}}" >
@@ -22,7 +36,7 @@
       <h1 class="title">{{post.title}}</h1>
       <i class="fa fa-tags"></i> Tags: 
       {% for tag in post.tags | sort %}
-      <a class="text-muted tag-margin" href="/posts/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a>
+      <a class="text-muted tag-margin" href="/blog/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a>
       {% endfor %}
       </p>
     </header>
@@ -31,20 +45,20 @@
       <p>
       <ul class="list-inline social-bar text-center">
         <li><strong>Share this post:</strong> </li>
-        <li><a href="https://www.facebook.com/sharer.php?u={{blog.url | url_encode}}%2Fposts%2F{{post.slug | url_encode}}" 
+        <li><a href="https://www.facebook.com/sharer.php?u={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}" 
           target="_blank">
           <span class="fa-stack fa-md fa-facebook-color">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-facebook fa-stack-1x fa-stack-color"></i>
           </span>
         </a></li>
-        <li><a href="https://twitter.com/share?text={{post.title | url_encode }}&url={{blog.url | url_encode}}%2Fposts%2F{{post.slug | url_encode}}&via=twitterhandlenoatsign" target="_blank">
+        <li><a href="https://twitter.com/share?text={{post.title | url_encode }}&url={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}&via=twitterhandlenoatsign" target="_blank">
           <span class="fa-stack fa-md fa-twitter-color">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-twitter fa-stack-1x fa-stack-color"></i>
           </span>
         </a></li>
-        <li><a href="https://plus.google.com/share?url={{blog.url | url_encode}}%2Fposts%2F{{post.slug | url_encode}}" 
+        <li><a href="https://plus.google.com/share?url={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}" 
           target="_blank">
           <span class="fa-stack fa-md fa-google-plus-color">
             <i class="fa fa-circle fa-stack-2x"></i>

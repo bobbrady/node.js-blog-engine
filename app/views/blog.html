@@ -1,17 +1,27 @@
+<!
+    xiao-blog - a small footprint blog designed for personal use.
+    Copyright (c) 2014-2015, Bob Brady. 
+    Usage permitted under the terms of The MIT License, (MIT), 
+    https://github.com/bobbrady/xiao-blog
+--> 
+{% extends 'layout.html' %}
+{% block meta %}
+{% endblock %}
+{% block content %}
 <main>
 {% if pageHeader %}
-  <h2 id="page-header">{{pageHeader}}</h2>
+  <h1 id="page-header">{{pageHeader}}</h1>
   <hr>
 {% endif %}
 {% for post in posts %}
 <section>
   <div class="post">
-    <a href="/posts/{{post.slug}}"  rel="bookmark" class="post-thumbnail">
+    <a href="/blog/{{post.slug}}"  rel="bookmark" class="post-thumbnail">
       <img alt="{{post.title}}" class="image-responsive" width="300" height="225" src="{{post.coverImage}}">
     </a>
     <div class="post-info">
       <p>
-      <a class="text-muted" href="/posts/tags/{{post.tags | first}}">
+      <a class="text-muted" href="/blog/tags/{{post.tags | first}}">
         Category: {{post.tags | first | replace('-', ' ', 'g') | title }}
       </a>
       <time datetime="{{post.created | date('Y-m-d')}}" >
@@ -19,14 +29,14 @@
       </time>
       </p>
       <h1 class="title">
-        <a href="/posts/{{post.slug}}">
+        <a href="/blog/{{post.slug}}">
           {{post.title}}                
         </a>
       </h1>
       <p>
       <i class="fa fa-tags"></i> Tags: 
       {% for tag in post.tags | sort %}
-      <a class="text-muted tag-margin" href="/posts/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a>
+      <a class="text-muted tag-margin" href="/blog/tags/{{tag}}">{{tag | replace('-', ' ', 'g') | title}}</a>
       {% endfor %}
       </p>
     </div>
@@ -45,7 +55,7 @@
     </li>
 {% else %}
     <li class="previous">
-      <a href="/?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">Previous</a>
+      <a href="/blog?page={{prevPage}}&greaterThanTime={{greaterThanTime}}">Previous</a>
     </li>
 {% endif %}
 {% if nextPage <= 0 %}
@@ -54,8 +64,10 @@
     </li>
 {% else %}
     <li class="next">
-    <a href="/?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next</a>
+    <a href="/blog?page={{nextPage}}&lessThanTime={{lessThanTime}}">Next</a>
     </li>
 {% endif %}
   </ul>
 </nav>
+{% endblock %}
+{% block admin-side %}{% include 'admin/admin-side.html' %}{% endblock %}

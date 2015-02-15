@@ -28,7 +28,7 @@ var getErrorMessage = function(err) {
   }
 };
 
-exports.list = function(req, res) {
+exports.blogIndex = function(req, res) {
   var options = buildPaginationOptions(req);
   Post.paginate(options, function(err, pagerInput) {
     if (err) {
@@ -38,7 +38,7 @@ exports.list = function(req, res) {
     } else {
       var pager = buildPager(pagerInput);
       markupToHtml(pager);
-      res.render('index', {
+      res.render('blog', {
         posts: pager.posts,
         lessThanTime: pager.lessThanTime,
         greaterThanTime: pager.greaterThanTime,
@@ -64,7 +64,8 @@ exports.listByTag = function(req, res) {
     } else {
       var pager = buildPager(pagerInput);
       markupToHtml(pager);
-      res.render('tag', {
+      res.render('blog', {
+	      pageHeader: req.tagName,      
         posts: pager.posts,
         lessThanTime: pager.lessThanTime,
         greaterThanTime: pager.greaterThanTime,
@@ -78,7 +79,8 @@ exports.listByTag = function(req, res) {
     }});
 };  
 
-exports.read = function(req, res) {
+
+exports.post = function(req, res) {
   var post = req.post;
   post.content = marked(post.content);
   res.render('post', {
