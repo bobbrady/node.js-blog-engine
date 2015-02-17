@@ -21,10 +21,9 @@ var prepend_basedir = function(name) {
 
 global.prepend_basedir = prepend_basedir;
 
-
-var express = require(prepend_basedir('config/express')),
-mongoose = require(prepend_basedir('config/mongoose')),
-passport = require(prepend_basedir('config/passport'));
+var mongoose = require(prepend_basedir('config/mongoose')),
+    express = require(prepend_basedir('config/express')),
+    passport = require(prepend_basedir('config/passport'));
 
 mongoose();
 var app = express(),
