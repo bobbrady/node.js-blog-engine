@@ -22,8 +22,80 @@ https://github.com/bobbrady/xiao-blog
 <link rel="canonical" href="{{blog.url}}" />
 {% endblock %}
 {% block content %}
-<main>
-<h1 id="page-header">Home Page</h1>
+<main class="content">
+<h1 class="title">Xiao Blog: A Node.js, Express, Mongoose, and MongoDB Blog Platform</h1>
+<p>
+Are you looking for a simple blog platform that uses a Node.js, Express, Mongoose, and MongoDB stack?
+Want an <a target="_blank" href="http://en.wikipedia.org/wiki/Minimum_viable_product">MVP</a>  <a target="_blank" href="http://en.wikipedia.org/wiki/MEAN">MEAN stack</a> precusor app wihout the Hipster fluff? Well, you've come to the right place! Xiao Blog is an open source blogging platform that can be used as-is or experimented with as a gateway to learning the MEAN stack. It rests on top of the Node + Express + Mongoose/MongoDB stack with Swig template views.   
+<p>
+<h2>Feature Summary</h2>
+<p>
+Xiao Blog has the following features:
+<ul>
+  <li><a target="_blank" href="http://nodejs.org/">Node</a> + <a target="_blank" href="http://expressjs.com/">Express</a> + <a target="_blank" href="http://mongoosejs.com/">Mongoose</a>/<a target="_blank" href="http://www.mongodb.org/">MongoDB</a> + <a target="_blank" href="http://paularmstrong.github.io/swig">Swig template</a> stack.</li>
+  <li><a target="_blank" href="http://getbootstrap.com/">Bootstrap 3</a> responsive theme.</li>
+  <li>Modular architecture pattern (Model, View, Controller, Route) recommended by <a target="_blank" href="http://meanjs.org/docs.html#folder-structure">MEAN.js</a>.</li>
+  <li>Markdown blog post browser editor with preview.</li>
+  <li>Featured image for posts.</li>
+  <li>Built-in comments template in every post backed by <a target="_blank" href="https://disqus.com">Disqus</a>.</li> 
+  <li>Built-in social sharing/following links for Twitter, Facebook and Google+.</li> 
+  <li><a target="_blank" href="http://www.google.com/recaptcha/intro/index.html">Google Recaptcha</a> form submittal.</li>
+  <li><a target="_blank" href="https://code.google.com/apis/console/?pli=1">Google API</a> for gmail contact messages.</li>
+  <li>Tag cloud using MongoDB map/reduce for counts and font size.</li>
+</ul>
+
+More details are given in the <a href="/features">Features section</a>. 
+
+<h2>How to get Started with Xiao Blog</h2> 
+
+Installation Prequisites:
+<ul>
+  <li>JavaScript: Node and npm.</li>
+  <li>MongoDB.</li>
+</ul>
+
+Installation Steps
+<ol>
+  <li>Make sure MongoDB is running
+ <pre><code class="bash">
+  mongod --dbpath=/path/to/data/dir</li>
+ </code></pre></li>
+  <li>Clone the github repo
+ <pre><code class="bash">
+git clone https://github.com/bobbrady/xiao-blog.git
+ </code></pre>
+</li>
+<li>Edit
+ <pre><code class="bash">
+xiao-blog/config/env/development.js 
+ </code></pre>
+replace 
+ <pre><code class="bash">
+basedir: "/home/user/xiao-blog" 
+ </code></pre>
+with  the directory where you cloned Xiao Blog</li>
+<li>Cd into the repo directory xiao-blog and run:
+ <pre><code class="bash">
+[xiao-blog]$ npm install
+[xiao-blog]$ grunt dist-css
+[xiao-blog]$ grunt dist-js 
+[xiao-blog]$ node server.js 
+ </code></pre>
+</li>
+<li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!</li>
+</ol>
+<p>
+Having problems? <a href="/contactForm">Contact me</a> 
+</p>
+
+<h2>Who Did This and Why?</h2>
+<p>
+My name is Bob Brady (DigiBrady). I began by looking for a simple MEAN stack personal blogging platform that I could tinker with and learn by doing. Xiao Blog started simple and the features gradually expanded to what they are today. You can read more about me in the <a href="/about">About section</a>.
+</p>
+<p>
+<a target="_blank" href="https://translate.google.com/#zh-CN/en/%E5%B0%8F">Xiao (pronounced "shao")</a> is the pinyin for the Chinese word meaning "small".  It is used in the project name as a hat tip to all the Chinese web developers whose open source code has helped me on my MEAN stack journey.
+</p>
 </main>
+
 {% endblock %}
 {% block admin-side %}{% include 'admin/admin-side.html' %}{% endblock %}
