@@ -27,15 +27,15 @@ Installation Prequisites:
 
 Installation Steps
 
-1.Make sure MongoDB is running 
+1. Make sure MongoDB is running 
 ```sh
 mongod --dbpath=/path/to/data/dir
 ```
-2.Clone the github repo
+2. Clone the github repo
 ```sh
 git clone https://github.com/bobbrady/xiao-blog.git
 ```
-3.Edit
+3. Edit
 ```sh
 xiao-blog/config/env/development.js 
 ``` 
@@ -44,14 +44,14 @@ replace
 basedir: "/home/user/xiao-blog" 
 ```
 with  the directory where you cloned Xiao Blog
-4.Cd into the repo directory xiao-blog and run:
+4. Cd into the repo directory xiao-blog and run:
 ```sh
 [xiao-blog]$ npm install
 [xiao-blog]$ grunt dist-css
 [xiao-blog]$ grunt dist-js 
 [xiao-blog]$ node server.js 
 ```
-5.Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!
+5. Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!
 
 Having problems? Contact me, create an issue, or submit a pull request.
 
