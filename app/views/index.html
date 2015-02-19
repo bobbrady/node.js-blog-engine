@@ -25,6 +25,31 @@ https://github.com/bobbrady/xiao-blog
 <main class="content">
 <h1 class="title">Xiao Blog: A Node.js, Express, Mongoose, and MongoDB Blog Platform</h1>
 <p>
+<img class="img-responsive" alt="Xiao Blog Software Stack Architecture"  src="/img/xiaoblog-stack-640.jpg">
+<ul class="list-inline social-bar text-center">
+  <li><strong>Share this post:</strong> </li>
+  <li><a href="https://www.facebook.com/sharer.php?u={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}" 
+    target="_blank">
+    <span class="fa-stack fa-md fa-facebook-color">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-facebook fa-stack-1x fa-stack-color"></i>
+    </span>
+  </a></li>
+  <li><a href="https://twitter.com/share?text={{post.title | url_encode }}&url={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}&via=twitterhandlenoatsign" target="_blank">
+    <span class="fa-stack fa-md fa-twitter-color">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x fa-stack-color"></i>
+    </span>
+  </a></li>
+  <li><a href="https://plus.google.com/share?url={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}" 
+    target="_blank">
+    <span class="fa-stack fa-md fa-google-plus-color">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-google-plus fa-stack-1x fa-stack-color"></i>
+    </span>
+  </a></li>
+</ul>    
+</p>
 Are you looking for a simple blog platform that uses a Node.js, Express, Mongoose, and MongoDB stack?
 Want an <a target="_blank" href="http://en.wikipedia.org/wiki/Minimum_viable_product">MVP</a>  <a target="_blank" href="http://en.wikipedia.org/wiki/MEAN">MEAN stack</a> precusor app wihout the Hipster fluff? Well, you've come to the right place! Xiao Blog is an open source blogging platform that can be used as-is or experimented with as a gateway to learning the MEAN stack. It rests on top of the Node + Express + Mongoose/MongoDB stack with Swig template views.   
 <p>
@@ -57,32 +82,32 @@ Installation Prequisites:
 Installation Steps
 <ol>
   <li>Make sure MongoDB is running
- <pre><code class="bash">
+  <pre><code class="bash">
   mongod --dbpath=/path/to/data/dir</li>
- </code></pre></li>
+  </code></pre></li>
   <li>Clone the github repo
- <pre><code class="bash">
+  <pre><code class="bash">
 git clone https://github.com/bobbrady/xiao-blog.git
- </code></pre>
-</li>
-<li>Edit
- <pre><code class="bash">
+  </code></pre>
+  </li>
+  <li>Edit
+  <pre><code class="bash">
 xiao-blog/config/env/development.js 
- </code></pre>
-replace 
- <pre><code class="bash">
+  </code></pre>
+  replace 
+  <pre><code class="bash">
 basedir: "/home/user/xiao-blog" 
- </code></pre>
-with  the directory where you cloned Xiao Blog</li>
-<li>Cd into the repo directory xiao-blog and run:
- <pre><code class="bash">
+  </code></pre>
+  with  the directory where you cloned Xiao Blog</li>
+  <li>Cd into the repo directory xiao-blog and run:
+  <pre><code class="bash">
 [xiao-blog]$ npm install
 [xiao-blog]$ grunt dist-css
 [xiao-blog]$ grunt dist-js 
 [xiao-blog]$ node server.js 
- </code></pre>
-</li>
-<li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!</li>
+  </code></pre>
+  </li>
+  <li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!</li>
 </ol>
 <p>
 Having problems? <a href="/contactForm">Contact me</a> 
