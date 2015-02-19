@@ -10,7 +10,7 @@ Want an [MVP](http://en.wikipedia.org/wiki/Minimum_viable_product) [MEAN stack](
 ## Feature Summary
 
 Xiao Blog has the following features:
-* [Node](http://nodejs.org) + [Express](http://expressjs.com) + [Mongoose](http://mongoosejs.com)/[MongoDB](http://www.mongodb.org) + [Disqus](http://paularmstrong.github.io/swig "Swig template homepage") stack
+* [Node](http://nodejs.org) + [Express](http://expressjs.com) + [Mongoose](http://mongoosejs.com)/[MongoDB](http://www.mongodb.org) + [Swig](http://paularmstrong.github.io/swig "Swig template homepage") stack
 * [Bootstrap 3](http://getbootstrap.com) responsive theme 
 * Modular architecture pattern (Model, View, Controller, Route) recommended by [MEAN.js](http://meanjs.org/docs.html#folder-structure")
 * Markdown blog post browser editor with preview
