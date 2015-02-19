@@ -63,6 +63,8 @@
     <br/>
 </main>
 {% endblock %}
+{% block sidebar %}{% include '../../tagcloud-sidebar.html' %}{% endblock %}
+{% block admin-sidebar %}{% include '../admin-sidebar.html' %}{% endblock %}
 
 {% block lastjs %}
 <script src="/js/marked.min.js"></script>

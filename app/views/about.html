@@ -19,11 +19,11 @@ https://github.com/bobbrady/xiao-blog
 <title>{{blog.title}}</title>
 <meta name="description" content="{{blog.description}}" />
 <!-- For successful FB crawler canonical url and og:url need to be the same -->
-<link rel="canonical" href="{{blog.url}}" />
 {% endblock %}
 {% block content %}
 <main>
 <h1 id="page-header">About Me</h1>
 </main>
 {% endblock %}
-{% block admin-side %}{% include 'admin/admin-side.html' %}{% endblock %}
+{% block sidebar %}{% include 'default-sidebar.html' %}{% endblock %}
+{% block admin-sidebar %}{% include 'admin/admin-sidebar.html' %}{% endblock %}

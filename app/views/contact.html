@@ -51,6 +51,8 @@ Feel free to contact me
 </div>
 </main>
 {% endblock %}
+{% block sidebar %}{% include 'default-sidebar.html' %}{% endblock %}
+{% block admin-sidebar %}{% include 'admin/admin-sidebar.html' %}{% endblock %}
 {% block lastjs %}
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 <script src="/js/xiaoblog.min.js"></script>

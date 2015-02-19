@@ -73,109 +73,13 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8 right-vert-line">
-          {% block page-header %}{% endblock %}
           {% block content %}{% endblock %}
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
-
-          <div class="widget-group">
-            <h5 class="widget-title">Blog Search</h5>
-            <div class="input-group">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-          <!-- /search .widget-group -->
-          <h5 class="widget-title">Connect with Us</h5>
-          <ul class="list-inline social-bar text-center">
-            <li><a href="http://facebook.com/username" target="_blank">
-              <span class="fa-stack fa-md fa-facebook-color">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-facebook fa-stack-1x fa-stack-color"></i>
-              </span>
-            </a></li>
-            <li><a href="http://twitter.com/username" target="_blank">
-              <span class="fa-stack fa-md fa-twitter-color">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-stack-color"></i>
-              </span>
-            </a></li>
-            <li><a href="#" target="_blank">
-              <span class="fa-stack fa-md fa-google-plus-color">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-google-plus fa-stack-1x fa-stack-color"></i>
-              </span>
-            </a></li>
-            <li><a href="#">
-              <span class="fa-stack fa-md fa-rss-color">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-stack-color"></i>
-              </span>
-            </a></li>
-          </ul>    
-
-          <!-- Blog Tags -->
-          <h5 class="widget-title">Tags</h5>
-          <div id="tagcloud"></div>
-          <aside>
-          <!-- Popular Posts Hardcoded for Now -->
-            <h5 class="widget-title">Popular Posts</h5>
-            <div class="leading-top-post">
-              <a class="top-post-thumbnail" href="/blog/post-title-text">
-                <img alt="most popular post cover image" 
-			class="img-responsive" src="/img/station-492564_640.jpg">
-              </a>
-              <p>
-              <a class="text-muted" href="/blog/tags/tagname">
-                Category: Tag
-              </a>
-              </p>
-              <h4 class="title">
-                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet</a>
-              </h4>		
-              </p>
-            </div>
-            <!-- .post -->
-            <div class="top-post">
-              <p>
-              <a class="text-muted" href="/blog/tags/tagname">
-                Category: Tag
-              </a>
-              </p>
-              <h4 class="title">
-                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, omittam</a>
-              </h4>
-            </div>
-            <!-- .post -->
-            <div class="top-post">
-              <p>
-              <a class="text-muted" href="/blog/tags/tagname">
-                Category: Tag
-              </a>
-              </p>
-              <h4 class="title">
-                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, te verterem liberavisse duo</a>
-              </h4>
-            </div>
-            <!-- .post -->
-            <div class="top-post">
-              <p>
-              <a class="text-muted" href="/blog/tags/tagname">
-                Category: Tag
-              </a>
-              </p>
-              <h4 class="title">
-                <a href="/blog/post-title-text">Lorem ipsum dolor sit amet, ad putent iisque has. Eos decore laboramus conclusionemque at, eam</a>
-              </h4>
-            </div>
-          </aside>
-          {% block admin-side %}{% endblock %}
+          {% block sidebar %}{% endblock %}
+          {% block admin-sidebar %}{% endblock %}
         </div>
       </div>
       <!-- /.row -->

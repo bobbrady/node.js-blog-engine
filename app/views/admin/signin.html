@@ -5,14 +5,25 @@
     https://github.com/bobbrady/xiao-blog
 --> 
 {% extends '../layout.html' %}
+{% block meta %}
+<!-- Open Graph Meta Tags -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="{{blog.title}}"/>
+<meta property="og:description" content="{{blog.description}}"/>
+<meta property="og:site_name" content="{{blog.title}}"/>
+<meta property="og:url" content="{{blog.url}}"/>
+<meta property="og:image" content="{{blog.url}}{{blog.logo}}"/>
+<meta property="fb:app_id" content="FB_APP_ID"/>
 
-{% block title %}{{blog.title}}{% endblock %}
-
-{% block header %}{% include '../header.html' %}{% endblock %}
+<!-- Page Meta Tags -->
+<title>{{blog.title}} Sign-in Page</title>
+<meta name="description" content="{{blog.title}} Sign-in Page" />
+<!-- For successful FB crawler canonical url and og:url need to be the same -->
+{% endblock %}
 
 {% block content %}
-<main role="main">
 
+<main role="main">
 {% if (error && error.length > 0) %}
 <div class="alert alert-danger" role="alert">
   {{error}}
@@ -36,4 +47,7 @@
 
 </main>
 {% endblock %}
+
+{% block sidebar %}{% include '../default-sidebar.html' %}{% endblock %}
+{% block admin-sidebar %}{% include 'admin-sidebar.html' %}{% endblock %}
 
