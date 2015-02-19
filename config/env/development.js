@@ -15,8 +15,8 @@ module.exports = {
   sessionSecret: 'XiaoBlogSecret',
   app: {
     url: 'http://localhost:3000',
-    title: 'Xiao Blog',
-    description: 'Xiao Blog is a small footprint blog designed for personal use',
+    title: 'Xiao Blog: A Node.js blog engine, simple, fast, & free',
+    description: 'Xiao Blog is a Node.js blog engine using markdown stored to MongoDB. Open source modules like Mongoose and Bootstrap keep things simple and easy to use!',
     logo: '/img/xiao-blog-logo.png',
     favicon: 'public/img/xiao-blog-favicon.ico',
     postsPerPage: 10,

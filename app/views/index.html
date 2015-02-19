@@ -23,9 +23,9 @@ https://github.com/bobbrady/xiao-blog
 {% endblock %}
 {% block content %}
 <main class="content">
-<h1 class="title">Xiao Blog: A Node.js, Express, Mongoose, and MongoDB Blog Platform</h1>
+<h1 class="title">Xiao Blog: A Node.js blog engine that's simple, fast, and free</h1>
 <p>
-<img class="img-responsive" alt="Xiao Blog Software Stack Architecture"  src="/img/xiaoblog-stack-640.jpg">
+<img class="img-responsive" alt="Xiao Blog Engine Node.js + Express Web Application Architecture Stack"  src="/img/xiaoblog-stack-640.jpg">
 <ul class="list-inline social-bar text-center">
   <li><strong>Share this post:</strong> </li>
   <li><a href="https://www.facebook.com/sharer.php?u={{blog.url | url_encode}}%2Fblog%2F{{post.slug | url_encode}}" 
@@ -50,7 +50,7 @@ https://github.com/bobbrady/xiao-blog
   </a></li>
 </ul>    
 </p>
-Are you looking for a simple blog platform that uses a Node.js, Express, Mongoose, and MongoDB stack?
+Are you looking for a simple Node.js blog engine that includes Express, Mongoose, and MongoDB in the stack?
 Want an <a target="_blank" href="http://en.wikipedia.org/wiki/Minimum_viable_product">MVP</a>  <a target="_blank" href="http://en.wikipedia.org/wiki/MEAN">MEAN stack</a> precusor app wihout the Hipster fluff? Well, you've come to the right place! Xiao Blog is an open source blogging platform that can be used as-is or experimented with as a gateway to learning the MEAN stack. It rests on top of the Node + Express + Mongoose/MongoDB stack with Swig template views.   
 <p>
 <h2>Feature Summary</h2>
@@ -71,43 +71,56 @@ Xiao Blog has the following features:
 
 More details are given in the <a href="/features">Features section</a>. 
 
-<h2>How to get Started with Xiao Blog</h2> 
+<h2>Benefits of Xiao Blog Web App Development</h2>
+<p>
+There are many benefits to checking out and running the Xiao Blog code. It is a practical Node.js application example ideal for beginners and hobbyists to build upon. You could use Xiao Blog as your personal blog engine on your web host. You could download and run the code locally on you computer, following along with the <a href="/features">Feature</a> posts to act as a Node + Express tutorial. Here are some additional benefits:  
+<ul>
+<li>Learn by doing: build and extend a working Node.js Express app having a simple starting point.</li>
+<li>Get exposure to a widely accepted web application architecture used in MEAN.js stack apps.</li>
+<li>See how to use Mongodb data modeling with Mongoose.</li>  
+<li>Safely hash and store passwords with the <a target="_blank" href="https://github.com/shaneGirish/bcrypt-nodejs">Bcrypt JS Module </a> in a Mongoose + MongoDB + Express stack</li>  
+<li>Expose tricks like disabling Bootstrap's code.less so that code highlighting modules work correctly in the UI.</li>
+<li>Handle form and HTTP 404/500 errors with Bootstrap, JQuery, and simple Swig templates.</li>
+</ul>
+</p>
+
+<h2>How to build and run Xiao Blog</h2> 
 
 Installation Prequisites:
 <ul>
-  <li>JavaScript: Node and npm.</li>
-  <li>MongoDB.</li>
+<li>JavaScript: Node and npm.</li>
+<li>MongoDB.</li>
 </ul>
 
 Installation Steps
 <ol>
-  <li>Make sure MongoDB is running
-  <pre><code class="bash">
-  mongod --dbpath=/path/to/data/dir</li>
-  </code></pre></li>
-  <li>Clone the github repo
-  <pre><code class="bash">
+<li>Make sure to start MongoDB and have it running
+<pre><code class="bash">
+mongod --dbpath=/path/to/data/dir</li>
+</code></pre></li>
+<li>Clone the github repo
+<pre><code class="bash">
 git clone https://github.com/bobbrady/xiao-blog.git
-  </code></pre>
-  </li>
-  <li>Edit
-  <pre><code class="bash">
+</code></pre>
+</li>
+<li>Edit
+<pre><code class="bash">
 xiao-blog/config/env/development.js 
-  </code></pre>
-  replace 
-  <pre><code class="bash">
+</code></pre>
+replace 
+<pre><code class="bash">
 basedir: "/home/user/xiao-blog" 
-  </code></pre>
-  with  the directory where you cloned Xiao Blog</li>
-  <li>Cd into the repo directory xiao-blog and run:
-  <pre><code class="bash">
+</code></pre>
+with  the directory where you cloned Xiao Blog</li>
+<li>Cd into the repo directory xiao-blog and run:
+<pre><code class="bash">
 [xiao-blog]$ npm install
 [xiao-blog]$ grunt dist-css
 [xiao-blog]$ grunt dist-js 
 [xiao-blog]$ node server.js 
-  </code></pre>
-  </li>
-  <li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!</li>
+</code></pre>
+</li>
+<li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!</li>
 </ol>
 <p>
 Having problems? <a href="/contactForm">Contact me</a> 
@@ -118,7 +131,7 @@ Having problems? <a href="/contactForm">Contact me</a>
 My name is Bob Brady (DigiBrady). I began by looking for a simple MEAN stack personal blogging platform that I could tinker with and learn by doing. Xiao Blog started simple and the features gradually expanded to what they are today. You can read more about me in the <a href="/about">About section</a>.
 </p>
 <p>
-<a target="_blank" href="https://translate.google.com/#zh-CN/en/%E5%B0%8F">Xiao (pronounced "shao")</a> is the pinyin for the Chinese word meaning "small".  It is used in the project name as a hat tip to all the Chinese web developers whose open source code has helped me on my MEAN stack journey.
+<a target="_blank" href="https://translate.google.com/#zh-CN/en/%E5%B0%8F">Xiao (pronounced "shao")</a> is the pinyin for the Chinese word meaning "small".  It is used in the project name as a hat tip to all the Chinese web developers whose open source code has helped me on my MEAN stack journey. By documenting and sharing this code, I hope to help you along with your journey too.
 </p>
 </main>
 
