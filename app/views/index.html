@@ -100,7 +100,7 @@ mongod --dbpath=/path/to/data/dir</li>
 </code></pre></li>
 <li>Clone the github repo
 <pre><code class="bash">
-git clone https://github.com/bobbrady/xiao-blog.git
+git clone https://github.com/bobbrady/xiao-blog-engine.git
 </code></pre>
 </li>
 <li>Edit
@@ -109,15 +109,15 @@ xiao-blog/config/env/development.js
 </code></pre>
 replace 
 <pre><code class="bash">
-basedir: "/home/user/xiao-blog" 
+basedir: "/home/user/xiao-blog-engine" 
 </code></pre>
 with  the directory where you cloned Xiao Blog</li>
-<li>Cd into the repo directory xiao-blog and run:
+<li>Cd into the repo directory xiao-blog-engine and run:
 <pre><code class="bash">
-[xiao-blog]$ npm install
-[xiao-blog]$ grunt dist-css
-[xiao-blog]$ grunt dist-js 
-[xiao-blog]$ node server.js 
+$ npm install
+$ grunt dist-css
+$ grunt dist-js 
+$ node server.js 
 </code></pre>
 </li>
 <li>Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local account, and start creating posts with Xiao Blog!</li>

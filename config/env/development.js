@@ -10,7 +10,7 @@
 "use strict";
 
 module.exports = {
-  basedir: "/home/user/xiao-blog",
+  basedir: "/home/user/xiao-blog-engine",
   db: 'mongodb://localhost/xiao-blog',
   sessionSecret: 'XiaoBlogSecret',
   app: {
