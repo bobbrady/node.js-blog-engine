@@ -1,3 +1,5 @@
+title: A Node.js blog engine that's simple and easy to use  
+
 # Xiao Blog: A Node.js blog engine that's simple and easy to use.
 
 ![Xiao Blog Engine Architecture](https://github.com/bobbrady/xiao-blog-engine/blob/master/public/img/xiaoblog-stack-640.jpg)
