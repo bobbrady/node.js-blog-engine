@@ -1,6 +1,6 @@
-![小 Xiao Blog Logo](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiao-blog-logo.png)
+Xiao Blog: A Node.js blog engine that's simple and easy to use.
 
-# Xiao Blog: A Node.js, Express, Mongoose, and MongoDB Blog Platform
+![小 Xiao Blog Logo](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiao-blog-logo.png)
 
 ![Xiao Blog Stack Architecture](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiaoblog-stack-640.jpg)
 
