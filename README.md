@@ -36,14 +36,12 @@ Installation Steps
         git clone https://github.com/bobbrady/xiao-blog-engine.git
     
 3. Edit the configuration file `xiao-blog-engine/config/env/development.js` and replace `basedir: "/home/user/xiao-blog-engine"` with  the directory where you cloned Xiao Blog.
-4. Cd into the repo directory xiao-blog-engine and run:
+4. Cd into the repo directory xiao-blog-engine.  Install the required Node.js modules and start the server:
        
         $ npm install
-        $ grunt dist-css
-        $ grunt dist-js 
         $ node server.js 
       
-5. Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local acount, and start creating posts with Xiao Blog!
+5. Go to [http://localhost:3000/admin/signup](http://localhost:3000/admin/signup "Xiao Blog signup page"), create a local account, and start creating posts with Xiao Blog!
 
 Having problems? Contact me, create an issue, or submit a pull request.
 
