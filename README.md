@@ -1,6 +1,6 @@
 # Xiao Blog: A Node.js blog engine that's simple and easy to use.
 
-![Xiao Blog Engine Architecture](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiaoblog-stack-640.jpg)
+![Xiao Blog Engine Architecture](https://github.com/bobbrady/xiao-blog-engine/blob/master/public/img/xiaoblog-stack-640.jpg)
 
 Are you looking for a simple blog platform that uses a Node.js, Express, Mongoose, and MongoDB stack?
 Want an [MVP](http://en.wikipedia.org/wiki/Minimum_viable_product) [MEAN stack](http://en.wikipedia.org/wiki/MEAN) precursor app without the Hipster fluff? Well, you've come to the right place! Xiao Blog is an open source blogging platform that can be used as-is or experimented with as a gateway to learning the MEAN stack. It rests on top of the Node + Express + Mongoose/MongoDB stack with Swig template views.   
@@ -33,9 +33,9 @@ Installation Steps
       
 2. Clone the github repo
    
-        git clone https://github.com/bobbrady/xiao-blog.git
+        git clone https://github.com/bobbrady/xiao-blog-engine.git
     
-3. Edit the configuration file `xiao-blog/config/env/development.js` and replace `basedir: "/home/user/xiao-blog"` with  the directory where you cloned Xiao Blog.
+3. Edit the configuration file `xiao-blog/config/env/development.js` and replace `basedir: "/home/user/xiao-blog-engine"` with  the directory where you cloned Xiao Blog.
 4. Cd into the repo directory xiao-blog and run:
        
         [xiao-blog]$ npm install
