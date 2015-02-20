@@ -1,4 +1,4 @@
-Title: Xiao Blog: A Node.js blog engine that's simple and easy to use  
+Title: Xiao Blog - A Node.js blog engine that's simple and easy to use  
 
 # Xiao Blog: A Node.js blog engine that's simple and easy to use.
 
