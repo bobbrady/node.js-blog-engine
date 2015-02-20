@@ -1,8 +1,6 @@
 Xiao Blog: A Node.js blog engine that's simple and easy to use.
 
-![小 Xiao Blog Logo](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiao-blog-logo.png)
-
-![Xiao Blog Stack Architecture](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiaoblog-stack-640.jpg)
+![Xiao Blog Engine Architecture](https://github.com/bobbrady/xiao-blog/blob/master/public/img/xiaoblog-stack-640.jpg)
 
 Are you looking for a simple blog platform that uses a Node.js, Express, Mongoose, and MongoDB stack?
 Want an [MVP](http://en.wikipedia.org/wiki/Minimum_viable_product) [MEAN stack](http://en.wikipedia.org/wiki/MEAN) precursor app without the Hipster fluff? Well, you've come to the right place! Xiao Blog is an open source blogging platform that can be used as-is or experimented with as a gateway to learning the MEAN stack. It rests on top of the Node + Express + Mongoose/MongoDB stack with Swig template views.   
