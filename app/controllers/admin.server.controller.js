@@ -89,30 +89,30 @@ exports.create = function(req, res) {
   description = req.body.description,
   content = req.body.content,
   tags = req.body.tags.length > 0 ? req.body.tags.split(/\s*,[,\s]*/) : [],
-  uploads = req.body.uploadedFiles.length > 0 ? req.body.uploadedFiles.split(',') : [],
-  published = req.body.published;
+uploads = req.body.uploadedFiles.length > 0 ? req.body.uploadedFiles.split(',') : [],
+published = req.body.published;
 
-  var post = new Post({
-    title: title,
-    description: description,
-    content: content,
-    tags: tags,
-    coverImage: uploads[0],
-    uploads: uploads,
-    published: published,
-    author: req.user
-  });
-  post.save(function(err) {
-    if(err) {
-       var error = getErrorMessage(err);
-        req.flash('error', error);
-        return res.redirect('/admin/posts');
-    } else {
-      // Tip from http://stackoverflow.com/questions/10352241/reload-a-page-after-res-redirectback-in-route
-      res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-      res.redirect("/admin");
-    }
-  });
+var post = new Post({
+  title: title,
+  description: description,
+  content: content,
+  tags: tags,
+  coverImage: uploads[0],
+  uploads: uploads,
+  published: published,
+  author: req.user
+});
+post.save(function(err) {
+  if(err) {
+    var error = getErrorMessage(err);
+    req.flash('error', error);
+    return res.redirect('/admin/posts');
+  } else {
+    // Tip from http://stackoverflow.com/questions/10352241/reload-a-page-after-res-redirectback-in-route
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.redirect("/admin");
+  }
+});
 };
 
 exports.updateForm = function(req, res) {
@@ -137,9 +137,9 @@ exports.update = function(req, res) {
   }
   post.save(function(err) {
     if (err) {
-       var error = getErrorMessage(err);
-        req.flash('error', error);
-        return res.redirect('admin/posts/update');
+      var error = getErrorMessage(err);
+      req.flash('error', error);
+      return res.redirect('admin/posts/update');
     } else {
       // Tip from http://stackoverflow.com/questions/10352241/reload-a-page-after-res-redirectback-in-route
       res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -150,28 +150,31 @@ exports.update = function(req, res) {
 
 exports.delete = function(req, res) {
   var post = req.post;
-  (function next(err) {
-    if (err) {
-      return res.status(400).send({
-        message: 'error deleting ' + filename + ': ' + err
-      });
-    }
-    if (post.uploads.length === 0) {
-      return;
-    }
-    var filename = post.uploads.splice(0,1)[0];
-    fs.unlink(filename, next);
-  }());
+  var uploads = post.uploads;
   post.remove(function(err) {
     if(err) {
-      return res.status(400).send({
+      // If can't delete a post, we have a problem to fix
+      return res.status(500).send({
         message: getErrorMessage()
       });
     } else {
-      res.redirect("/admin");
+      // Best effort deletion attempt of uploaded files
+      for(var i = 0; i < uploads.length; i++) {
+        deleteUploadFiles(uploads[i]);
+      }
     }
+    res.redirect("/admin");
   });
 };
+
+function deleteUploadFiles(uploadFile) {
+  var filename = prepend_basedir('public' + uploadFile);
+  fs.unlink(filename, function (err) {
+    if (err) {
+      // TODO: replace with proper error file logging like log4js
+      console.error('error deleting ' + filename, err); 
+    }});
+}
 
 function buildPaginationOptions(req) {
   var options = {};
