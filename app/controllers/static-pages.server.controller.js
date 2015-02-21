@@ -45,19 +45,19 @@ exports.contact = function(req, res) {
 };
 
 exports.contactForm = function(req, res) {
-  res.render('contact');
+  res.render('contact', {userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''});
 };
 
 exports.home = function(req, res) {
-  res.render('index');
+  res.render('index', {userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''});
 };
 
 exports.features = function(req, res) {
-  res.render('features');
+  res.render('features', {userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''});
 };
 
 exports.about = function(req, res) {
-  res.render('about');
+  res.render('about', {userFullName: req.user ? req.user.firstName + ' ' + req.user.lastName : ''});
 };
 
 function sendMail(contactName, contactMessage, contactEmail) {
