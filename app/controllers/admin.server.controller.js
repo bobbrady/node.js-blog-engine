@@ -127,6 +127,7 @@ exports.updateForm = function(req, res) {
 exports.update = function(req, res) {
   var post = req.post;
   post.title = req.body.title;
+  post.description = req.body.description;
   post.content = req.body.content;
   post.published = req.body.published;
   if(req.body.tags) {
