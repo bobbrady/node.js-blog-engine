@@ -163,8 +163,13 @@ a:hover, a:focus {
 
 #header {
   margin-top:                 20px;
-  border-top:                 solid 5px @text-color !important;
-  border-bottom:              solid 5px @text-color !important;
+}
+
+#header hr {
+  margin:                     0;
+  border:                     none;
+  height:                     3px;
+  background-color:           @text-color; 
 }
 
 #header img { 
@@ -343,8 +348,13 @@ span.required, .error {
   vertical-align:           top;
 }
 
+
 .navbar .navbar-collapse {
   text-align:               center;
+}
+
+.navbar-collapse.in {
+  overflow-y: visible;
 }
 
 @media (min-width: 992px) {

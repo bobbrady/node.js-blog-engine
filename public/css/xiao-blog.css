@@ -6345,8 +6345,12 @@ header p {
 }
 #header {
   margin-top: 20px;
-  border-top: solid 5px #222222 !important;
-  border-bottom: solid 5px #222222 !important;
+}
+#header hr {
+  margin: 0;
+  border: none;
+  height: 3px;
+  background-color: #222222;
 }
 #header img {
   vertical-align: top;
@@ -6493,6 +6497,9 @@ span.required,
 }
 .navbar .navbar-collapse {
   text-align: center;
+}
+.navbar-collapse.in {
+  overflow-y: visible;
 }
 @media (min-width: 992px) {
   .navbar-nav > li > a {
