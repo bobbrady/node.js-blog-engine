@@ -55,28 +55,28 @@ var PostSchema = new Schema({
   uploads: [String]
 });
 
+
 /*
  * Thanks to mathewbyme for the slugify snippet
  *
  * https://gist.github.com/mathewbyrne/1280286
  *
  */
-function slugify(text) {
+PostSchema.statics.slugify = function(text) {
   return text.toString().toLowerCase()
   .replace(/\s+/g, '-')         // Replace spaces with -
   .replace(/[^\w\-]+/g, '')      // Remove all non-word chars
   .replace(/\-\-+/g, '-')         // Replace multiple - with single -
   .replace(/^-+/, '')          // Trim - from start of text
   .replace(/-+$/, '');         // Trim - from end of text
-}
+};
 
-PostSchema.pre('save', function (next) {
-  this.slug = slugify(this.title);
-  for(var i = 0; i < this.tags.length; i++) {
-    this.tags[i] = this.tags[i].replace(/\s+/g, '-').toLowerCase();
+PostSchema.statics.tagify = function(tags) {
+  for(var i = 0; i < tags.length; i++) {
+    tags[i] = tags[i].replace(/\s+/g, '-').toLowerCase();
   }
-  next(); 
-});
+  return tags;
+};
 
 PostSchema.statics.paginate = function(options, callback) {
   // Use mongoose sort format: "-propertyName" means descending, "propertyName" means ascending
@@ -110,5 +110,11 @@ PostSchema.statics.paginate = function(options, callback) {
     }
   });
 };
+
+PostSchema.pre('save', function (next) {
+  this.slug = PostSchema.statics.slugify(this.title);
+  this.tags = PostSchema.statics.tagify(this.tags);
+  next(); 
+});
 
 mongoose.model('Post', PostSchema);
