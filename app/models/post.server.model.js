@@ -20,9 +20,9 @@ var PostSchema = new Schema({
     unique: true,
     validate: [
       function(title) {
-      return title.length<=120;
+      return typeof title !== 'undefined' && title.length<=120;
     },
-    'Title exceeds 120 character max limit'
+    'Title must not be empty or exceed 120 character max limit'
     ]
   },
   description: {

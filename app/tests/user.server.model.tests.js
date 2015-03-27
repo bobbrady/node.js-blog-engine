@@ -12,7 +12,7 @@ var app = require('../../server.js'),
 
 var user;
 
-describe('User Model: Testing the save method', function() {
+describe('user.server.model.tests: Save User unit tests', function() {
 
     it('Should be able to save without problems', function(done) {
         user = new User({
@@ -138,7 +138,7 @@ describe('User Model: Testing the save method', function() {
 });
 
 
-describe('User model: Find Unit Tests:', function() {
+describe('user.server.model.tests: Find User Unit Tests', function() {
     beforeEach(function(done) {
         user = new User({
             firstName: 'FrstName',
