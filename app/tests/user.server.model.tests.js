@@ -46,6 +46,90 @@ describe('Testing the save method', function() {
         });
     });
 
+    it('Should throw a validation error when username is < 2 char', function(done) {
+        user = new User({
+            firstName: 'FrstName',
+            lastName: 'LastName',
+            username: 'u',
+            email: 'username@example.com',
+            password: 'password',
+            provider: 'local'
+        });
+        user.save(function(err) {
+			assert.isNotNull(err);
+			assert.equal(err.name, 'ValidationError');
+			assert.equal(err.errors.username.path, 'username');
+            done();
+        });
+    });
+
+    it('Should throw a validation error when username is blank char', function(done) {
+        user = new User({
+            firstName: 'FrstName',
+            lastName: 'LastName',
+            username: ' ',
+            email: 'username@example.com',
+            password: 'password',
+            provider: 'local'
+        });
+        user.save(function(err) {
+			assert.isNotNull(err);
+			assert.equal(err.name, 'ValidationError');
+			assert.equal(err.errors.username.path, 'username');
+            done();
+        });
+    });
+
+    it('Should throw a validation error when username is no char', function(done) {
+        user = new User({
+            firstName: 'FrstName',
+            lastName: 'LastName',
+            username: '',
+            email: 'username@example.com',
+            password: 'password',
+            provider: 'local'
+        });
+        user.save(function(err) {
+			assert.isNotNull(err);
+			assert.equal(err.name, 'ValidationError');
+			assert.equal(err.errors.username.path, 'username');
+            done();
+        });
+    });
+
+    it('Should throw a validation error when password is < 6 char', function(done) {
+        user = new User({
+            firstName: 'FrstName',
+            lastName: 'LastName',
+            username: 'username',
+            email: 'username@example.com',
+            password: 'pass',
+            provider: 'local'
+        });
+        user.save(function(err) {
+			assert.isNotNull(err);
+			assert.equal(err.name, 'ValidationError');
+			assert.equal(err.errors.password.path, 'password');
+            done();
+        });
+    });
+
+    it('Should throw a validation error when authentication provider is not set', function(done) {
+        user = new User({
+            firstName: 'FrstName',
+            lastName: 'LastName',
+            username: 'username',
+            email: 'username@example.com',
+            password: 'password',
+        });
+        user.save(function(err) {
+			assert.isNotNull(err);
+			assert.equal(err.name, 'ValidationError');
+			assert.equal(err.errors.provider.path, 'provider');
+            done();
+        });
+    });
+
     afterEach(function(done) {
         User.remove(function() {
             done();
