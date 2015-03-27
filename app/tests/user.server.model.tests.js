@@ -24,7 +24,7 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNull(err);
+            assert.isNull(err);
             done();
         });
     });
@@ -39,9 +39,9 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.email.path, 'email');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.email.path, 'email');
             done();
         });
     });
@@ -56,9 +56,9 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.username.path, 'username');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.username.path, 'username');
             done();
         });
     });
@@ -73,9 +73,9 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.username.path, 'username');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.username.path, 'username');
             done();
         });
     });
@@ -90,9 +90,9 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.username.path, 'username');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.username.path, 'username');
             done();
         });
     });
@@ -107,9 +107,9 @@ describe('Testing the save method', function() {
             provider: 'local'
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.password.path, 'password');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.password.path, 'password');
             done();
         });
     });
@@ -123,9 +123,9 @@ describe('Testing the save method', function() {
             password: 'password',
         });
         user.save(function(err) {
-			assert.isNotNull(err);
-			assert.equal(err.name, 'ValidationError');
-			assert.equal(err.errors.provider.path, 'provider');
+            assert.isNotNull(err);
+            assert.equal(err.name, 'ValidationError');
+            assert.equal(err.errors.provider.path, 'provider');
             done();
         });
     });
@@ -138,7 +138,6 @@ describe('Testing the save method', function() {
 });
 
 
-/*
 describe('User model Unit Tests:', function() {
     beforeEach(function(done) {
         user = new User({
@@ -146,11 +145,32 @@ describe('User model Unit Tests:', function() {
             lastName: 'LastName',
             username: 'username',
             email: 'username@example.com',
-            password: 'password'
+            password: 'password',
+            provider: 'local'
         });
         user.save(function() {
             done();
         });
     });
+
+    it('Should find a saved user', function(done) {
+        User.findOne({
+            _id: user.id
+        }, function(err, callbackUser) {
+            assert.isNull(err);
+        	assert.strictEqual(callbackUser.id, user.id);
+        	assert.strictEqual(callbackUser.username, user.username);
+        	assert.strictEqual(callbackUser.password, user.password);
+        	assert.strictEqual(callbackUser.email, user.email);
+        	assert.strictEqual(callbackUser.firstName, user.firstName);
+        	assert.strictEqual(callbackUser.lastName, user.lastName);
+            done();
+        });
+    });
+
+    afterEach(function(done) {
+        User.remove(function() {
+            done();
+        });
+    });
 });
-*/
