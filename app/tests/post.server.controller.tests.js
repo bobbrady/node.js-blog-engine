@@ -13,7 +13,7 @@ var app = require('../../server.js'),
     Post = mongoose.model('Post'),
     User = mongoose.model('User');
 
-var post;
+var user,post;
 
 describe('post.server.controller.tests: List Posts unit tests', function() {
 
